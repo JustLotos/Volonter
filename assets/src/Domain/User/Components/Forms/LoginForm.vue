@@ -3,7 +3,7 @@
     <v-form ref="loginForm">
       <v-row justify="center" align="center" style="flex-direction: column">
         <v-col cols="10" sm="8" md="10">
-          <v-sheet class="text-center">Введите данные для автоизации</v-sheet>
+          <v-sheet class="text-center">Введите данные для авторизации</v-sheet>
           <v-alert v-if="notFound" type="error" transition="fade-transition">Пользователь не найден</v-alert>
         </v-col>
         <v-col cols="10" sm="8" md="8" class="pt-0 mt-0">
@@ -12,7 +12,7 @@
         <v-col cols="10" sm="8" md="8">
           <control-password v-model="data.password" :error="getError.password"/>
         </v-col>
-        <v-col cols="10" sm="8" md="8" class="pt-0 mt-0 pb-0">
+        <v-col cols="10" sm="8" md="8" class="pt-0 mt-0 pb-2">
           <v-layout justify-center>
             <v-checkbox
               class="pt-0 mt-0 align-self-center"
@@ -26,7 +26,7 @@
       </v-row>
 
       <v-divider></v-divider>
-      <v-card-actions class="justify-center pb-2 pt-2">
+      <v-card-actions class="justify-center pb-3 pt-3">
         <v-btn
           class="pa2"
           color="primary"

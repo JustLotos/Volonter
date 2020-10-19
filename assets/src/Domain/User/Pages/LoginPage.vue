@@ -1,7 +1,7 @@
 <template>
   <v-layout align-center justify-center>
     <v-flex sm10 md8 lg6>
-      <v-toolbar color="primary" dark flat class="text-center">
+      <v-toolbar color="primary" dark flat class="d-flex justify-center">
         <v-toolbar-title>Авторизация</v-toolbar-title>
       </v-toolbar>
       <login-form @submit="handle" :error="error" :not-found="notFound" />

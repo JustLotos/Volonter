@@ -21,7 +21,7 @@
         </v-col>
       </v-row>
       <v-divider/>
-      <v-card-actions class="justify-center pb-2 pt-2">
+      <v-card-actions class="justify-center pb-3 pt-3">
         <v-btn
           class="pa2 text-center primary"
           @click="register"

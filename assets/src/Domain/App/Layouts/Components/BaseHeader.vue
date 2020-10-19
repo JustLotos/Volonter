@@ -29,7 +29,6 @@ export default class BaseHeader extends Vue {
         if (this.$route.name !== this.$router.resolve({name: 'Home'}).resolved.name &&
             this.$route.name !== this.$router.resolve({name: 'Dashboard'}).resolved.name
         ) {
-          debugger;
             if(UserModule.isAuthenticated) { return this.$router.push({name: 'Dashboard'}) }
             return this.$router.push({name: 'Home'});
         }

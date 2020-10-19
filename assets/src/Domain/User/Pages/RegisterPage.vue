@@ -1,24 +1,24 @@
 <template>
-  <v-container fluid fill-height>
-    <v-layout align-center justify-center>
-      <v-flex sm10 md8 lg6>
-        <v-toolbar color="primary" dark flat class="text-center">
-            <v-toolbar-title>Регистрация</v-toolbar-title>
-        </v-toolbar>
-        <register-form @register="handle" :errors="errors"></register-form>
-        <v-card-actions class="mt-5">
-          <v-row justify="center" class="flex-wrap">
-            <v-card dark flat class="transparent">
-              <span>Есть учетная запись?</span>
-              <v-btn text link :to="{name: 'Login'}" color="primary">Войти</v-btn>
-            </v-card>
-          </v-row>
-        </v-card-actions>
-      </v-flex>
-    </v-layout>
+  <v-layout align-center justify-center>
+    <v-flex sm10 md8 lg6>
+      <v-toolbar color="primary" dark flat class="d-flex justify-center">
+          <v-toolbar-title >Регистрация</v-toolbar-title>
+      </v-toolbar>
+      <register-form @register="handle" :errors="errors"></register-form>
+      <v-card-actions class="mt-5">
+        <v-row justify="center" class="flex-wrap">
+          <v-card dark flat class="transparent">
+            <span>Есть учетная запись?</span>
+            <v-btn text link :to="{name: 'Login'}" color="white" class="pl-2">
+              <v-icon>mdi-login</v-icon>Войти
+            </v-btn>
+          </v-card>
+        </v-row>
+      </v-card-actions>
+    </v-flex>
 
     <modal v-model="modal"><v-alert type="success">{{modalMessage}}</v-alert></modal>
-    </v-container>
+  </v-layout>
 </template>
 <script lang="ts">
 import {Component, Vue, Watch} from 'vue-property-decorator';
