@@ -1,10 +1,13 @@
 <template>
-    <v-text-field validate-on-blur  type="email" prepend-icon="mdi-email"
-        label="E-mail адресс"
-        v-model="value"
-        :rules="rules"
-        :error-messages="error"
-    ></v-text-field>
+  <v-text-field
+    validate-on-blur
+    type="email"
+    prepend-icon="mdi-email"
+    :label="$t('component.control.email.label')"
+    v-model="value"
+    :rules="rules"
+    :error-messages="error"
+  ></v-text-field>
 </template>
 
 <script>
@@ -22,8 +25,8 @@ export default {
     data: function () {
         return {
             rules: [
-                v => !!v || 'E-mail обязателен для заполнения',
-                v => /.+@.+\..+/.test(v) || 'E-mail должен быть валидным',
+                v => !!v || this.$t('component.control.email.required'),
+                v => /.+@.+\..+/.test(v) || this.$t('component.control.email.valid'),
             ],
         }
     }

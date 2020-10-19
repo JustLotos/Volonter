@@ -1,6 +1,6 @@
 <template>
     <v-text-field validate-on-blur prepend-icon="mdi-lock"
-            label="Пароль"
+            :label="$t('component.control.password.label')"
             v-model="value"
             :rules="rules"
             :type="show ? 'text' : 'password'"
@@ -27,8 +27,9 @@ export default {
         return {
             show: false,
             rules: [
-                v => !!v || 'Пароль обязателен для заполнения',
-                v => (v && v.length >= PASSWORD_LENGTH) || 'Пароль должен быть больше '+PASSWORD_LENGTH+' символов',
+                v => !!v || this.$t('component.control.password.required'),
+                v => (v && v.length >= PASSWORD_LENGTH) ||
+                    this.$t('component.control.password.required').replace('6', PASSWORD_LENGTH),
             ],
         }
     }

@@ -3,8 +3,10 @@
     <v-form ref="loginForm">
       <v-row justify="center" align="center" style="flex-direction: column">
         <v-col cols="10" sm="8" md="10">
-          <v-sheet class="text-center">Введите данные для авторизации</v-sheet>
-          <v-alert v-if="notFound" type="error" transition="fade-transition">Пользователь не найден</v-alert>
+          <v-sheet class="text-center">{{ $t('component.loginForm.header') }}</v-sheet>
+          <v-alert v-if="notFound" type="error" transition="fade-transition">
+            {{ $t('component.loginForm.error.userNotFound') }}
+          </v-alert>
         </v-col>
         <v-col cols="10" sm="8" md="8" class="pt-0 mt-0">
           <control-email v-model="data.email" :error="getError.email"/>
@@ -19,7 +21,7 @@
               hide-details
               v-model="data.rememberMe"
               :error="getError.rememberMe"
-              label="Запомнить меня"
+              :label="$t('component.loginForm.control.rememberMe')"
             />
           </v-layout>
         </v-col>

@@ -2,18 +2,18 @@
   <v-layout align-center justify-center>
     <v-flex sm10 md8 lg6>
       <v-toolbar color="primary" dark flat class="d-flex justify-center">
-        <v-toolbar-title>Авторизация</v-toolbar-title>
+        <v-toolbar-title>{{ $t('page.login.header')}}</v-toolbar-title>
       </v-toolbar>
       <login-form @submit="handle" :error="error" :not-found="notFound" />
       <v-card-actions class="mt-5">
         <v-row class="text--white">
           <v-col cols="12" class="pa1 text-center">
-            <span class="text--white">Еще не зарегестрированы?</span>
-            <v-btn text link :to="{ name: 'Register' }" color="white">Присоедениться!</v-btn>
+            <span class="text--white">{{ $t('page.login.registerLabel')}}</span>
+            <v-btn text link :to="{ name: 'Register' }" color="white">{{$t('menu.main.register')}}!</v-btn>
           </v-col>
           <v-col v-if="notFound" cols="12" class="pa1 text-center">
-            <span>Забыли пароль?</span>
-            <v-btn text link :to="{ name: 'ResetPassword' }" color="white">Восстановить!</v-btn>
+            <span>{{ $t('page.login.resetPassLabel') }}</span>
+            <v-btn text link :to="{ name: 'ResetPassword' }" color="white">{{ $t('link.reset') }}!</v-btn>
           </v-col>
         </v-row>
       </v-card-actions>
