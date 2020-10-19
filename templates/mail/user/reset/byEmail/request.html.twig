@@ -1,0 +1,5 @@
+{% extends 'mail/mail.html.twig' %}
+{% block body %}
+    <p>Password Reset Link:</p>
+    <p><a class="confirm-link" data-token="{{ token }}" href="{{ url }}">Confirm Link</a></p>
+{% endblock %}

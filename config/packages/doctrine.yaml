@@ -1,0 +1,32 @@
+doctrine:
+    dbal:
+        url: '%env(resolve:DATABASE_URL)%'
+        driver: 'pdo_pgsql'
+        server_version: '11'
+        charset: utf8mb4
+        default_table_options:
+            charset: utf8mb4
+            collate: utf8mb4_unicode_ci
+        types:
+            users_user_id:           'App\Domain\User\Entity\Types\Doctrine\IdType'
+            users_user_email:        'App\Domain\User\Entity\Types\Doctrine\EmailType'
+            users_user_password:     'App\Domain\User\Entity\Types\Doctrine\PasswordType'
+            users_user_role:         'App\Domain\User\Entity\Types\Doctrine\RoleType'
+#            flash_learner_id:        'App\Domain\Flash\Learner\Entity\Types\IdType'
+    orm:
+        auto_generate_proxy_classes: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        auto_mapping: true
+        mappings:
+            User:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Domain/User/Entity'
+                prefix: 'App\Domain\User\Entity'
+                alias: User
+#            Learner:
+#                is_bundle: false
+#                type: annotation
+#                dir: '%kernel.project_dir%/src/Domain/Flash/Learner/Entity'
+#                prefix: 'App\Domain\Flash\Entity'
+#                alias: Flash

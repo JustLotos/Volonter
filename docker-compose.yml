@@ -1,0 +1,66 @@
+version: "3.1"
+volumes:
+  postgres: ~
+services:
+  nginx:
+    image: nginx:alpine
+    working_dir: /app
+    volumes:
+      - ${PWD}:/app
+      - ${PWD}/docker/hosts/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "${NGINX_PORT}:80"
+    links:
+      - php
+  postgres:
+    image: postgres:alpine
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pguser
+    ports:
+      - "5432:5432"
+  php:
+    build: docker/images/php
+    working_dir: /app
+    user: ${UID:-1000}:${GID:-1000}
+    volumes:
+      - ./:/app
+      - ${HOME}/.composer:/.composer
+    environment:
+      - COMPOSER_ALLOW_SUPERUSER=1
+      - "PHP_IDE_CONFIG=serverName=flash.back"
+    links:
+      - postgres
+  node:
+    build: docker/images/node
+    working_dir: /app
+    environment:
+      - YARN_CACHE_FOLDER=/yarn
+    user: ${UID:-1000}:${GID:-1000}
+    volumes:
+      - ./:/app
+      - ${HOME}/.yarn:/yarn
+  mailhog:
+    image: mailhog/mailhog
+    container_name: 'mailhog'
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+  redmine:
+    image: redmine
+    restart: always
+    ports:
+      - 8080:3000
+    environment:
+      REDMINE_DB_MYSQL: db
+      REDMINE_DB_PASSWORD: example
+      REDMINE_SECRET_KEY_BASE: supersecretkey
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: redmine

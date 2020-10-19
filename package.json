@@ -1,0 +1,74 @@
+{
+  "license": "Roman Lotos",
+  "private": true,
+  "devDependencies": {
+    "@babel/preset-env": "^7.12.1",
+    "@babel/compat-data": "7.9.0",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/runtime": "^7.10.2",
+    "@symfony/webpack-encore": "^0.30.2",
+    "@vue/test-utils": "^1.0.3",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-loader": "^3.0.4",
+    "eslint-plugin-vue": "^6.2.2",
+    "ts-loader": "^7.0.5",
+    "tslint-loader": "^3.5.4",
+    "typescript": "^3.9.5",
+    "vue-class-component": "^5.0.1",
+    "vue-loader": "^15.9.2",
+    "vue-property-decorator": "^5.0.1",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-notifier": "^1.6.0"
+  },
+  "dependencies": {
+
+    "@mdi/js": "^5.3.45",
+    "axios": "^0.19.2",
+    "core-js": "^3.6.5",
+    "countup.js": "^2.0.5",
+    "element-ui": "^2.13.2",
+    "jest": "^26.0.1",
+    "js-cookie": "^2.2.1",
+    "material-design-icons-iconfont": "^5.0.1",
+    "sass": "^1.26.8",
+    "sass-loader": "^7.0.1",
+    "ts-jest": "^26.1.0",
+    "tslint": "^6.1.2",
+    "vue": "^2.6.11",
+    "vue-axios": "^2.1.5",
+    "vue-countup-v2": "^4.0.0",
+    "vue-i18n": "^8.18.1",
+    "vue-jest": "^3.0.5",
+    "vue-router": "^3.3.2",
+    "vue2-editor": "^2.10.2",
+    "vuetify": "^2.2.32",
+    "vuetify-loader": "^1.4.4",
+    "vuex": "^3.4.0",
+    "vuex-module-decorators": "^0.17.0"
+  },
+  "scripts": {
+    "csfix": "eslint assets/vue --ext .js,.vue, --fix",
+    "test:unit": "jest"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "Firefox ESR",
+    "not dead"
+  ],
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "vue-jest",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testURL": "http://flash.local/"
+  }
+}
