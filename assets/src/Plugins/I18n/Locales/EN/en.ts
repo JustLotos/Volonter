@@ -15,6 +15,10 @@ export default {
             "header": "Sign In",
             "registerLabel": "Not Registered Yet ?",
             "resetPassLabel": "Reset"
+        },
+        "register": {
+            "header": "Registration",
+            "loginLabel": "Have an account?",
         }
     },
     "component": {
@@ -27,6 +31,12 @@ export default {
                 "rememberMe": "Remember Me"
             }
         },
+        "registerForm": {
+            "header": "Enter your registration data",
+            "control": {
+                "confirm": "Password confirmation"
+            }
+        },
         "control": {
             "password": {
                 "label": "Password",
@@ -35,8 +45,8 @@ export default {
             },
             "email": {
                 "label": "E-mail address",
-                "required": "E-mail is required",
-                "valid": "Email must be valid"
+                "required": "E-mail address is required",
+                "valid": "Email address must be valid"
             }
         }
     }

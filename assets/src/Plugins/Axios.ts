@@ -16,8 +16,6 @@ Axios.interceptors.response.use(
         UserModule.UNSET_LOADING();
         const originalRequest: AxiosRequestConfig = error.config;
 
-        debugger;
-
         if (error.response?.status === 401 && originalRequest.url === RouterApi.getUrlByName('refreshToken').path) {
             UserModule.LOGOUT();
             return Router.push({name: 'Login'});
@@ -33,6 +31,7 @@ Axios.interceptors.response.use(
                 return axios(originalRequest);
             });
         }
+        //debugger;
         return Promise.reject(error);
     }
 );

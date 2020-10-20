@@ -2,15 +2,15 @@
   <v-layout align-center justify-center>
     <v-flex sm10 md8 lg6>
       <v-toolbar color="primary" dark flat class="d-flex justify-center">
-          <v-toolbar-title >Регистрация</v-toolbar-title>
+          <v-toolbar-title >{{$t('page.register.header')}}</v-toolbar-title>
       </v-toolbar>
       <register-form @register="handle" :errors="errors"></register-form>
       <v-card-actions class="mt-5">
         <v-row justify="center" class="flex-wrap">
           <v-card dark flat class="transparent">
-            <span>Есть учетная запись?</span>
+            <span>{{$t('page.register.loginLabel')}}</span>
             <v-btn text link :to="{name: 'Login'}" color="white" class="pl-2">
-              <v-icon>mdi-login</v-icon>Войти
+              <v-icon class="pr-1">mdi-login</v-icon> {{$t('menu.main.login')}}
             </v-btn>
           </v-card>
         </v-row>

@@ -4,7 +4,7 @@
       <v-row justify="center" align="center" style="flex-direction: column">
         <v-col cols="10" sm="10" md="10">
           <v-sheet class="text-center">{{ $t('component.loginForm.header') }}</v-sheet>
-          <v-alert v-if="notFound" type="error" transition="fade-transition">
+          <v-alert v-if="notFound" type="error" transition="fade-transition" class="text-center">
             {{ $t('component.loginForm.error.userNotFound') }}
           </v-alert>
         </v-col>

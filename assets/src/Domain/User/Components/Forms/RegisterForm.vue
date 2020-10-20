@@ -3,7 +3,7 @@
     <v-form ref="registerForm">
       <v-row justify="center" align="center" style="flex-direction: column">
         <v-col cols="10" sm="10" md="10" class="text-center">
-          <v-sheet>Введите данные для регистрации</v-sheet>
+          <v-sheet>{{ $t('component.registerForm.header') }}</v-sheet>
         </v-col>
         <v-col cols="10" sm="7" md="7"  class="pt-0 mt-0">
           <control-email v-model="data.email" :error="getErrors.email"/>
@@ -16,7 +16,7 @@
             v-model="data.plainPassword"
             :error="getErrors.plainPassword"
             :field="data.password"
-            label="Подтверждение пароля"
+            :label="$t('component.registerForm.control.confirm')"
           />
         </v-col>
       </v-row>
@@ -28,7 +28,7 @@
           :loading="loading"
           x-large
           elevation="24"
-        >Зарегистрироваться</v-btn>
+        >{{$t('menu.main.register')}}</v-btn>
       </v-card-actions>
     </v-form>
   </v-card>

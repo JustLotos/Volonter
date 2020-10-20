@@ -3,7 +3,7 @@ export default {
     "menu" : {
         "main": {
             "login": "Войти",
-            "register": "Регистрация",
+            "register": "Присоедениться",
             "logout": "Выйти",
         }
     },
@@ -14,17 +14,27 @@ export default {
         "login": {
             "header": "Авторизация",
             "registerLabel": "Еще не зарегестрированны ?",
-            "resetPassLabel": "Forgot your password ?",
+            "resetPassLabel": "Забыли свой пароль ?",
+        },
+        "register": {
+            "header": "Регистрация",
+            "loginLabel": "Есть учетная запись?",
         }
     },
     "component": {
         "loginForm": {
             "header": "Введите данные для авторизации",
             "error": {
-                "userNotFound": "Пользователь не найден"
+                "userNotFound": "Пользователь не найден !"
             },
             "control": {
                 "rememberMe": "Запомнить меня"
+            }
+        },
+        "registerForm": {
+            "header": "Введите данные для регистрации",
+            "control": {
+                "confirm": "Подтверждение пароля"
             }
         },
         "control": {
@@ -35,8 +45,8 @@ export default {
             },
             "email": {
                 "label": "E-mail адресс",
-                "required": "E-mail обязателен для заполнения",
-                "valid": "E-mail должен быть валидным"
+                "required": "E-mail адресс обязателен для заполнения",
+                "valid": "E-mail адресс должен быть валидным"
             }
         }
     }
