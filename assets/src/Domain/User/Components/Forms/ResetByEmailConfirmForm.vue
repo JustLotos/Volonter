@@ -1,6 +1,6 @@
 <template>
     <v-card class="elevation-10">
-        <v-form ref="resetForm">
+        <v-form ref="resetForm" @submit="submit">
             <v-row justify="center">
                 <v-col cols="12" sm="9" class="text-center">
                     <v-sheet>Введите данные для восстановления</v-sheet>
@@ -19,7 +19,7 @@
             </v-row>
             <v-divider></v-divider>
             <v-card-actions class="justify-center">
-                <v-btn class="pa2 text-center primary" @click="resetPassword" :loading="loading">Восстановить</v-btn>
+                <v-btn class="pa2 text-center primary" @click="submit" :loading="loading">Восстановить</v-btn>
             </v-card-actions>
         </v-form>
     </v-card>
@@ -46,7 +46,7 @@ export default class ResetByEmailConfirmForm extends Vue  {
 
     get loading() { return UserModule.isLoading }
 
-    resetPassword() {
+    submit() {
         if(this.$refs.resetForm.validate()) {
             this.$emit('reset', this.payloads);
         }

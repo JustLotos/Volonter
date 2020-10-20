@@ -1,6 +1,6 @@
 <template>
   <v-card class="elevation-10">
-    <v-form ref="registerForm">
+    <v-form ref="registerForm" @submit="submit">
       <v-row justify="center" align="center" style="flex-direction: column">
         <v-col cols="10" sm="10" md="10" class="text-center">
           <v-sheet>{{ $t('component.registerForm.header') }}</v-sheet>
@@ -24,7 +24,7 @@
       <v-card-actions class="justify-center pb-3 pt-3">
         <v-btn
           class="pa2 text-center primary"
-          @click="register"
+          @click="submit"
           :loading="loading"
           x-large
           elevation="24"
@@ -52,7 +52,7 @@ export default class RegisterForm extends Vue  {
     get getErrors(): RegisterByEmailRequest {
         return this.errors || { email: '', password: '', plainPassword: '' }
     }
-    register() {
+    submit() {
         if(this.$refs.registerForm.validate()) {
             this.$emit('register', this.data);
         }

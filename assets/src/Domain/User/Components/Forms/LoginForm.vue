@@ -1,6 +1,6 @@
 <template>
   <v-card class="elevation-10">
-    <v-form ref="loginForm">
+    <v-form ref="loginForm" @submit="submit">
       <v-row justify="center" align="center" style="flex-direction: column">
         <v-col cols="10" sm="10" md="10">
           <v-sheet class="text-center">{{ $t('component.loginForm.header') }}</v-sheet>

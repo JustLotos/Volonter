@@ -3,7 +3,7 @@ import BaseLayout from "../App/Layouts/BaseLayout.vue";
 import RegisterPage from "./Pages/RegisterPage.vue";
 import LogoutPage from "./Pages/LogoutPage.vue";
 import LoginPage from "./Pages/LoginPage.vue";
-import ResetByEmailPage from "./Pages/Reset/ResetByEmailPage.vue";
+import ResetByEmailPage from "./Pages/ResetByEmailPage.vue";
 import i18n from "../../Plugins/I18n/I18n";
 
 export const UserRoutes: Array<RouteConfig> = [
