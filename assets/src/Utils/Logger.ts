@@ -18,4 +18,9 @@ export default class Logger {
 
         console.log(value);
     }
+
+    public static logAPIError(error) {
+        Logger.log(error, {encode: 'json', label: 'error', trace: true})
+        Logger.log(error.response, {label: 'error.response'});
+    }
 }

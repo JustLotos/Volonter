@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
-import ResetByEmailForm from "../../Components/Forms/ResetByEmailForm.vue";
+import ResetByEmailForm from "../../Components/Forms/ResetByEmailRequestForm.vue";
 import ResetByEmailConfirmForm from "../../Components/Forms/ResetByEmailConfirmForm.vue";
 import {AppModule} from "../../../App/AppModule";
 import Modal from "../../../App/Components/Modal.vue"

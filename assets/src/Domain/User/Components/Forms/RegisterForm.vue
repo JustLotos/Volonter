@@ -28,7 +28,7 @@
           :loading="loading"
           x-large
           elevation="24"
-        >{{$t('menu.main.register')}}</v-btn>
+        >{{ $t('menu.main.register') }}</v-btn>
       </v-card-actions>
     </v-form>
   </v-card>
