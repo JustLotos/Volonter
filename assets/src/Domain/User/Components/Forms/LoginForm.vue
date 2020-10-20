@@ -4,8 +4,8 @@
       <v-row justify="center" align="center" style="flex-direction: column">
         <v-col cols="10" sm="10" md="10">
           <v-sheet class="text-center">{{ $t('component.loginForm.header') }}</v-sheet>
-          <v-alert v-if="notFound" type="error" transition="fade-transition" class="text-center">
-            {{ $t('component.loginForm.error.userNotFound') }}
+          <v-alert v-if="auth" type="error" transition="fade-transition" class="text-center">
+            {{ auth }}
           </v-alert>
         </v-col>
         <v-col cols="10" sm="7" md="7" class="pt-0 mt-0">
@@ -20,7 +20,6 @@
               class="pt-0 mt-0 align-self-center"
               hide-details
               v-model="data.rememberMe"
-              :error="getError.rememberMe"
               :label="$t('component.loginForm.control.rememberMe')"
             />
           </v-layout>
@@ -48,22 +47,19 @@ import ControlEmail from "../../../App/Components/FormElements/ControlEmail.vue"
 import ControlPassword from "../../../App/Components/FormElements/ControlPassword.vue";
 import LoginRequest from "../../Entity/API/Login/LoginRequest";
 import {UserModule} from "../../UserModule";
+import LoginErrorResponse from "../../Entity/API/Login/LoginErrorResponse";
 
 @Component({components: { ControlEmail, ControlPassword}})
 export default class LoginForm extends Vue {
-    @Prop() error: LoginRequest;
-    @Prop() notFound: boolean;
+    @Prop() error: LoginErrorResponse;
+    @Prop() auth: LoginErrorResponse;
 
-    private data: LoginRequest =  {
-        email: '',
-        password: '',
-        rememberMe: false
-    };
-
-    get getError(): LoginRequest {
-      return this.error || { email: '', password: '', rememberMe: false }
-    }
     get loading() { return UserModule.isLoading }
+    get getError(): LoginErrorResponse {
+      return this.error || { email: '', password: '', auth: '' }
+    }
+
+    private data: LoginRequest =  { email: '', password: '', rememberMe: false};
 
     public submit() {
         if(this.$refs.loginForm.validate()) {
