@@ -26,7 +26,7 @@
 import {Component, Vue, Watch} from 'vue-property-decorator';
 import RegisterForm from "../Components/Forms/RegisterForm.vue";
 import {AppModule} from "../../App/AppModule";
-import Modal from "../../App/Components/Modal.vue";
+import Modal from "../../App/Components/Modal/Modal.vue";
 import {UserModule} from "../UserModule";
 import RegisterByEmailRequest from "../Entity/API/Register/ByEmail/RegisterByEmailRequest";
 import Logger from "../../../Utils/Logger";

@@ -1,5 +1,5 @@
 export default {
-    "welcome": 'Welcome to the FLashBack app',
+    "welcome": 'Welcome',
     "menu": {
         "main": {
             "login": "Sign In",

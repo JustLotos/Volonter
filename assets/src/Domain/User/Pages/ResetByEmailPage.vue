@@ -24,7 +24,7 @@ import {Component, Vue} from 'vue-property-decorator';
 import ResetByEmailForm from "../Components/Forms/ResetByEmailRequestForm.vue";
 import ResetByEmailConfirmForm from "../Components/Forms/ResetByEmailConfirmForm.vue";
 import {AppModule} from "../../App/AppModule";
-import Modal from "../../App/Components/Modal.vue"
+import Modal from "../../App/Components/Modal/Modal.vue"
 import {UserModule} from "../UserModule";
 import ResetByEmailRequest from "../Entity/API/Reset/ByEmail/ResetByEmailRequest";
 import ResetByEmailConfirm from "../Entity/API/Reset/ByEmail/ResetByEmailConfirm";
