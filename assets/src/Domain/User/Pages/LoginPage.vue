@@ -9,11 +9,15 @@
         <v-row class="text--white">
           <v-col cols="12" class="pa1 text-center">
             <span class="text--white">{{ $t('page.login.registerLabel')}}</span>
-            <v-btn text link :to="{ name: 'Register' }" color="white">{{$t('menu.main.register')}}!</v-btn>
+            <v-btn text link :to="{ name: 'Register' }" color="white">
+              <v-icon class="pr-1">mdi-account-multiple-plus</v-icon > {{$t('menu.main.register')}}!
+            </v-btn>
           </v-col>
           <v-col v-if="notFound" cols="12" class="pa1 text-center">
             <span>{{ $t('page.login.resetPassLabel') }}</span>
-            <v-btn text link :to="{ name: 'ResetPassword' }" color="white">{{ $t('link.reset') }}!</v-btn>
+            <v-btn text link :to="{ name: 'ResetPassword' }" color="white">
+               {{ $t('link.reset') }}!
+            </v-btn>
           </v-col>
         </v-row>
       </v-card-actions>

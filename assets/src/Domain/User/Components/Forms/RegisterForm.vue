@@ -2,16 +2,16 @@
   <v-card class="elevation-10">
     <v-form ref="registerForm">
       <v-row justify="center" align="center" style="flex-direction: column">
-        <v-col cols="10" sm="8" md="10" class="text-center">
+        <v-col cols="10" sm="10" md="10" class="text-center">
           <v-sheet>Введите данные для регистрации</v-sheet>
         </v-col>
-        <v-col cols="10" sm="8" md="8"  class="pt-0 mt-0">
+        <v-col cols="10" sm="7" md="7"  class="pt-0 mt-0">
           <control-email v-model="data.email" :error="getErrors.email"/>
         </v-col>
-        <v-col cols="10" sm="8" md="8" class="pt-0 mt-0">
+        <v-col cols="10" sm="7" md="7" class="pt-0 mt-0">
           <control-password v-model="data.password" :error="getErrors.password"/>
         </v-col>
-        <v-col cols="10" sm="8" md="8"  class="pa1">
+        <v-col cols="10" sm="7" md="7"  class="pa1">
           <control-confirm
             v-model="data.plainPassword"
             :error="getErrors.plainPassword"

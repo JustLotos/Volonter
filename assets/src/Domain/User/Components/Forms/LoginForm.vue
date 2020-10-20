@@ -2,19 +2,19 @@
   <v-card class="elevation-10">
     <v-form ref="loginForm">
       <v-row justify="center" align="center" style="flex-direction: column">
-        <v-col cols="10" sm="8" md="10">
+        <v-col cols="10" sm="10" md="10">
           <v-sheet class="text-center">{{ $t('component.loginForm.header') }}</v-sheet>
           <v-alert v-if="notFound" type="error" transition="fade-transition">
             {{ $t('component.loginForm.error.userNotFound') }}
           </v-alert>
         </v-col>
-        <v-col cols="10" sm="8" md="8" class="pt-0 mt-0">
+        <v-col cols="10" sm="7" md="7" class="pt-0 mt-0">
           <control-email v-model="data.email" :error="getError.email"/>
         </v-col>
-        <v-col cols="10" sm="8" md="8">
+        <v-col cols="10" sm="7" md="7">
           <control-password v-model="data.password" :error="getError.password"/>
         </v-col>
-        <v-col cols="10" sm="8" md="8" class="pt-0 mt-0 pb-2">
+        <v-col cols="10" sm="7" md="7" class="pt-0 mt-0 pb-2">
           <v-layout justify-center>
             <v-checkbox
               class="pt-0 mt-0 align-self-center"
