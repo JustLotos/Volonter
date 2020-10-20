@@ -15,7 +15,7 @@
                 </v-row>
             </v-card-actions>
         </v-flex>
-        <modal v-model="modal"><v-alert type="success">{{modalMessage}}</v-alert></modal>
+        <modal v-model="modal" @close="redirect"><v-alert type="success">{{modalMessage}}</v-alert></modal>
     </v-layout>
 </template>
 
@@ -28,7 +28,6 @@ import Modal from "../../App/Components/Modal.vue"
 import {UserModule} from "../UserModule";
 import ResetByEmailRequest from "../Entity/API/Reset/ByEmail/ResetByEmailRequest";
 import ResetByEmailConfirm from "../Entity/API/Reset/ByEmail/ResetByEmailConfirm";
-import Router from "../../App/Router";
 
 @Component({components: {ResetByEmailConfirmForm, ResetByEmailForm, Modal}})
 export default class ResetByEmailPage extends Vue{
@@ -54,42 +53,36 @@ export default class ResetByEmailPage extends Vue{
             this.modalMessage = 'Токен не установлен';
         }
 
-        UserModule.resetByEmailConfirm(payloads)
-            .then(() => {
-              this.modalMessage = 'Пароль успешно изменен';
-              this.modal = !this.modal;
-              setTimeout(function () {
-                  Router.push({name: "Login"});
-              }, 3000);
-            })
-            .catch((error: AxiosError) => {
-                if(error.response?.data.errors) {
-                    if(error.response?.data.errors.token) {
-                        this.modal = !this.modal;
-                        this.modalMessage = error.response?.data.errors.token;
-                    } else {
-                        this.errorsResponse = error.response?.data.errors;
-                    }
+        UserModule.resetByEmailConfirm(payloads).then((response) => {
+            debugger
+            this.modalMessage = 'Пароль успешно изменен';
+            this.modal = !this.modal;
+        }).catch((error: AxiosError) => {
+            if(error.response?.data.errors) {
+                if(error.response?.data.errors.token) {
+                    this.modal = !this.modal;
+                    this.modalMessage = error.response?.data.errors.token;
+                } else {
+                    this.errorsResponse = error.response?.data.errors;
                 }
+            }
+        });
+    }
 
-                console.log(error.response);
-                console.log(error.toJSON());
-            });
+    redirect() {
+      return this.$router.push({name: "Login"});
     }
 
     private handleRequest(payloads: ResetByEmailRequest) {
-        UserModule.resetByEmailRequest(payloads)
-            .then(() => {
-                this.modal = !this.modal;
-                this.modalMessage = 'Письмо отправелно!, поверьте ваш email';
-            })
-            .catch((error: AxiosError) => {
-                if(error.response?.data.errors) {
-                    this.errorsRequest = error.response?.data.errors;
-                }
-                console.log(error.response);
-                console.log(error.toJSON());
-            });
+        UserModule.resetByEmailRequest(payloads).then((response) => {
+            debugger;
+            this.modal = !this.modal;
+            this.modalMessage = 'Письмо отправелно!, поверьте ваш email';
+        }).catch((error: AxiosError) => {
+            if(error.response?.data.errors) {
+              this.errorsRequest = error.response?.data.errors;
+            }
+        });
     }
 }
 </script>

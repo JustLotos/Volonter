@@ -31,6 +31,8 @@ Axios.interceptors.response.use(
                 return axios(originalRequest);
             });
         }
+
+        Logger.logAPIError(error);
         //debugger;
         return Promise.reject(error);
     }

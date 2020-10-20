@@ -23,21 +23,21 @@
         },
         model: { prop: 'modal', event: EVENT_NAME },
         computed: {
-
             value: {
                 get: function() {
-                   // AppModule.SET_ACTIVE_MODAL();
                     return this.modal || this.localModal
                 },
                 set: function(value) {
                     this.$emit(EVENT_NAME, value)
-                  //  AppModule.UNSET_ACTIVE_MODAL();
                 }
             },
         },
         methods: {
             modalToggle: function () {
                 this.value =  !this.value;
+                if(!this.value) {
+                  this.$emit('close');
+                }
             },
             handleKeyDown: function (event) {
                 if(event.code === 'Escape') {

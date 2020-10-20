@@ -44,8 +44,6 @@ export default class LoginPage extends Vue{
             if(error.response?.data.errors) {
                 this.error = error.response?.data.errors;
             }
-
-            Logger.logAPIError(error);
         });
     }
 
