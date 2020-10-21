@@ -21,6 +21,6 @@ export const UserRoutes: Array<RouteConfig> = [
     },
     {
         path: '/reset/email/', name: 'ResetByEmail', component: ResetByEmailPage,
-        meta: { label: 'Восстановить пароль', icon: 'mdi-logout', menu: false, auth: false, layout: BaseLayout},
+        meta: { label: i18n.t('link.reset'), icon: 'mdi-logout', menu: false, auth: false, layout: BaseLayout},
     },
 ];

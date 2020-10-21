@@ -16,7 +16,7 @@
           <v-col v-if="error.auth" cols="12" class="pa1 text-center">
             <span>{{ $t('page.login.resetPassLabel') }}</span>
             <v-btn text link :to="{ name: 'ResetByEmail' }" color="white">
-               {{ $t('link.reset') }}!
+               {{ $router.resolve({name: 'ResetByEmail'}).route.meta.label }}!
             </v-btn>
           </v-col>
         </v-row>
