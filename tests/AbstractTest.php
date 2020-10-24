@@ -225,9 +225,14 @@ abstract class AbstractTest extends WebTestCase
         $credentials = ['email' => $email, 'password' => $password,];
 
         $client = static::getClient();
-        $client->request('POST', '/api/v1/auth/login', [], [], ['CONTENT_TYPE' => 'application/json'], json_encode($credentials));
+        $client->request('POST', '/api/auth/login/', [], [], ['CONTENT_TYPE' => 'application/json'], json_encode($credentials));
 
         $data = json_decode($client->getResponse()->getContent(), true);
+
+        if(empty($data)) {
+            throw new \Exception('Auth client response empty!');
+        }
+
         $client = static::getClient();
         $client->setServerParameter('HTTP_Authorization', sprintf('Bearer %s', $data['token']));
         $client->setServerParameter('CONTENT_TYPE', sprintf('application/json'));
@@ -259,8 +264,12 @@ abstract class AbstractTest extends WebTestCase
         $method = $method ? $method : $this->method;
 
         $client = $this->createAuthenticatedClient();
+
+        ;
+
         $client->request($method, $url, [], [], ['CONTENT_TYPE' => 'application/json'], json_encode($data));
         $this->response = $client->getResponse();
+        var_dump($this->response);
         $this->content = json_decode($this->response->getContent(), true);
         return $client;
     }
