@@ -6,7 +6,7 @@ namespace App\Controller\API\Helper\Volunteer;
 
 use App\Controller\ControllerHelper;
 use App\Domain\Helper\Volunteer\Entity\Types\Id;
-use App\Domain\Helper\Volunteer\Entity\Volunteer;
+use App\Domain\Helper\Task\Entity\Volunteer;
 use App\Domain\Helper\Volunteer\VolunteerRepository;
 use App\Domain\User\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

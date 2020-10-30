@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Helper\Volunteer\UseCase\Create;
 
-use App\Domain\Helper\Volunteer\Entity\Volunteer;
+use App\Domain\Helper\Task\Entity\Volunteer;
 use App\Domain\Helper\Volunteer\Entity\Types\Id;
 use App\Domain\Helper\Volunteer\VolunteerRepository;
 use App\Domain\User\Entity\User;

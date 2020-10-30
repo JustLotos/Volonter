@@ -13,6 +13,7 @@ doctrine:
             users_user_password:     'App\Domain\User\Entity\Types\Doctrine\PasswordType'
             users_user_role:         'App\Domain\User\Entity\Types\Doctrine\RoleType'
             helper_volunteer_id:     'App\Domain\Helper\Volunteer\Entity\Types\IdType'
+            helper_task_id:          'App\Domain\Helper\Task\Entity\Types\IdType'
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
@@ -30,3 +31,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Domain/Helper/Volunteer/Entity'
                 prefix: 'App\Domain\Helper\Volunteer\Entity'
                 alias: Volunteer
+            Task:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Domain/Helper/Task/Entity'
+                prefix: 'App\Domain\Helper\Task\Entity'
+                alias: Task

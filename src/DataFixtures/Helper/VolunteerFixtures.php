@@ -9,18 +9,19 @@ use App\Domain\Helper\Volunteer\Entity\Types\Id;
 use App\Domain\Helper\Volunteer\Entity\Types\Name;
 use App\Domain\Helper\Volunteer\Entity\Volunteer;
 use App\Domain\User\Entity\User;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use App\DataFixtures\BaseFixture;
 
-class VolunteerFixtures extends BaseFixture implements ContainerAwareInterface
+class VolunteerFixtures extends BaseFixture implements ContainerAwareInterface, DependentFixtureInterface
 {
-    public const ADMIN = 'ADMIN_VOLUNTEERS';
-    public const USER = 'USER_VOLUNTEERS';
+    public const ADMINS = 'ADMIN_VOLUNTEERS';
+    public const USERS = 'USER_VOLUNTEERS';
 
     public function loadData(ObjectManager $manager) : void
     {
-        $this->createMany(1, self::ADMIN, function () {
+        $this->createMany(1, self::ADMINS, function () {
             /** @var User $user */
             $user = $this->getRandomReference(UserFixtures::ADMINS);
             /** @var Volunteer  */
@@ -30,7 +31,7 @@ class VolunteerFixtures extends BaseFixture implements ContainerAwareInterface
             return $learner->changeName(new Name('Роман', 'Игнашов'));
         });
 
-        $this->createMany(1, self::USER, function () {
+        $this->createMany(1, self::USERS, function () {
             /** @var User $user */
             $user = $this->getRandomReference(UserFixtures::USERS);
             /** @var Volunteer  */
@@ -40,5 +41,10 @@ class VolunteerFixtures extends BaseFixture implements ContainerAwareInterface
 
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [UserFixtures::class];
     }
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Helper\Volunteer;
 
-use App\Domain\Helper\Volunteer\Entity\Volunteer;
 use App\Domain\Helper\Volunteer\Entity\Types\Id;
+use App\Domain\Helper\Volunteer\Entity\Volunteer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManager;

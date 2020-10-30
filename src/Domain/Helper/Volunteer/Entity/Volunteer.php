@@ -6,6 +6,7 @@ namespace App\Domain\Helper\Volunteer\Entity;
 
 use App\Domain\Helper\Volunteer\Entity\Types\Id;
 use App\Domain\Helper\Volunteer\Entity\Types\Name;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 
@@ -30,7 +31,13 @@ class Volunteer
      * @Serializer\Groups({Volunteer::GROUP_SIMPLE})
      */
     private $name;
-    
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="App\Domain\Helper\Task\Entity\Task", mappedBy="volunteer", orphanRemoval=true, cascade={"persist"})
+     */
+    private $tasks;
+
     public const GROUP_SIMPLE   = 'GROUP_SIMPLE';
     public const GROUP_SETTINGS = 'GROUP_SETTINGS';
     public const GROUP_DETAILS  = 'GROUP_DETAILS';
@@ -61,4 +68,9 @@ class Volunteer
         $this->name = $name;
         return $this;
     }
+
+    public function getTasks() {
+        return $this->tasks->toArray();
+    }
+
 }
