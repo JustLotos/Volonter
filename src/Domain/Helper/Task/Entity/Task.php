@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Helper\Task\Entity;
 
-use App\Domain\Helper\Task\Entity\Types\Id;
+use App\Domain\Helper\Volunteer\Entity\Types\Id;
 use App\Domain\Helper\Volunteer\Entity\Volunteer;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
@@ -19,6 +19,7 @@ class Task
     /**
      * @var Id
      * @ORM\Column(type="helper_task_id")
+     * @Serializer\Groups({Task::GROUP_SIMPLE})
      * @ORM\Id
      */
     private $id;
@@ -26,6 +27,7 @@ class Task
     /**
      * @Serializer\Type(name="string")
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Groups({Task::GROUP_SIMPLE})
      */
     private $title;
 

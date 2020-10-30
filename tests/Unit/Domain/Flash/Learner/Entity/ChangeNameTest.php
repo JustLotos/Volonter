@@ -7,7 +7,7 @@ namespace App\Tests\Unit\Domain\Flash\Learner\Entity;
 use App\Domain\Helper\Volunteer\Entity\Types\Id;
 use App\Domain\Helper\Volunteer\Entity\Types\Name;
 use PHPUnit\Framework\TestCase;
-use App\Domain\Helper\Task\Entity\Volunteer;
+use App\Domain\Helper\Volunteer\Entity\Volunteer;
 
 class ChangeNameTest extends TestCase
 {

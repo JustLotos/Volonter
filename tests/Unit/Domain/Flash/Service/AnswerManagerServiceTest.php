@@ -17,7 +17,7 @@ use App\Domain\Flash\Entity\Deck\Deck;
 use App\Domain\Flash\Entity\Deck\Types\Settings;
 use App\Domain\Helper\Volunteer\Entity\Types\Id;
 use App\Domain\Flash\Service\AnswerMangerService\AnswerManagerService;
-use App\Domain\Helper\Task\Entity\Volunteer;
+use App\Domain\Helper\Volunteer\Entity\Volunteer;
 
 class AnswerManagerServiceTest extends TestCase
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Helper\Volunteer\Events;
+namespace App\Domain\Helper\Task\Events;
 
 
-use App\Domain\Helper\Volunteer\UseCase\Create\CreateHandler;
+use App\Domain\Helper\Task\UseCase\Create\CreateHandler;
 use App\Domain\User\Events\UserCreatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
