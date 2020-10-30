@@ -61,6 +61,7 @@ services:
     App\Service\ValidateService: ~
     App\Domain\User\UserRepository: ~
     App\Domain\User\Service\TokenService: ~
+    App\Domain\Volunteer\VolunteerRepository: ~
 
     #VALIDATORS
     validator.unique.uniqueuser:

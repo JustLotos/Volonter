@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Flash\Learner\Entity\Types;
+namespace App\Domain\Helper\Volunteer\Entity\Types;
 
 use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;

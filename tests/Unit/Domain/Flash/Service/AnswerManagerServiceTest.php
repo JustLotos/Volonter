@@ -15,9 +15,9 @@ use App\Domain\Flash\Entity\Card\Types\Record;
 use App\Domain\Flash\Entity\Card\Types\IRepeat;
 use App\Domain\Flash\Entity\Deck\Deck;
 use App\Domain\Flash\Entity\Deck\Types\Settings;
-use App\Domain\Flash\Learner\Entity\Types\Id;
+use App\Domain\Helper\Volunteer\Entity\Types\Id;
 use App\Domain\Flash\Service\AnswerMangerService\AnswerManagerService;
-use App\Domain\Flash\Learner\Entity\Learner;
+use App\Domain\Helper\Volunteer\Entity\Volunteer;
 
 class AnswerManagerServiceTest extends TestCase
 {
@@ -30,7 +30,7 @@ class AnswerManagerServiceTest extends TestCase
     {
         $this->ams = new AnswerManagerService(new DateIntervalConverter());
 
-        $this->learner = Learner::create(new Id('12345'));
+        $this->learner = Volunteer::create(new Id('12345'));
         $settings = new Settings();
         $this->deck = new Deck($this->learner, 'name', $settings, new DateTimeImmutable());
         $front = Record::createFrontSide('some text');

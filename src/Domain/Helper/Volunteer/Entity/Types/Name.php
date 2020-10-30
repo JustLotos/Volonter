@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Flash\Learner\Entity\Types;
+namespace App\Domain\Helper\Volunteer\Entity\Types;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
@@ -15,13 +15,13 @@ class Name
     /**
      * @ORM\Column(type="string", nullable=true)
      * @Serializer\Type(name="string")
-     * @Serializer\Groups({App\Domain\Flash\Entity\Learner\Learner::GROUP_SIMPLE})
+     * @Serializer\Groups({App\Domain\Helper\Entity\Volunteer\Volunteer::GROUP_SIMPLE})
      */
     private $first;
     /**
      * @ORM\Column(type="string", nullable=true)
      * @Serializer\Type(name="string")
-     * @Serializer\Groups({App\Domain\Flash\Entity\Learner\Learner::GROUP_SIMPLE})
+     * @Serializer\Groups({App\Domain\Helper\Entity\Volunteer\Volunteer::GROUP_SIMPLE})
      */
     private $last;
 

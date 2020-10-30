@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Flash\Learner;
+namespace App\Domain\Helper\Volunteer;
 
-use App\Domain\Flash\Learner\Entity\Learner;
-use App\Domain\Flash\Learner\Entity\Types\Id;
+use App\Domain\Helper\Volunteer\Entity\Volunteer;
+use App\Domain\Helper\Volunteer\Entity\Types\Id;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 
-class LearnerRepository extends ServiceEntityRepository
+class VolunteerRepository extends ServiceEntityRepository
 {
     /** @var EntityManager */
     private $manager;
@@ -21,9 +21,9 @@ class LearnerRepository extends ServiceEntityRepository
 
     public function __construct(ManagerRegistry $registry, EntityManagerInterface $em)
     {
-        parent::__construct($registry, Learner::class);
+        parent::__construct($registry, Volunteer::class);
         $this->manager = $em;
-        $this->repository = $em->getRepository(Learner::class);
+        $this->repository = $em->getRepository(Volunteer::class);
     }
 
     public function getById(Id $id)
@@ -31,7 +31,7 @@ class LearnerRepository extends ServiceEntityRepository
         return $this->repository->findOneBy(['id' => $id]);
     }
 
-    public function add(Learner $learner)
+    public function add(Volunteer $learner)
     {
         $this->manager->persist($learner);
     }

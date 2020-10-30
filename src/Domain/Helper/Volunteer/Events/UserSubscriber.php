@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Flash\Learner\Events;
+namespace App\Domain\Helper\Volunteer\Events;
 
-use App\Domain\Flash\Learner\UseCase\Create\CreateHandler;
+
+use App\Domain\Helper\Volunteer\UseCase\Create\CreateHandler;
 use App\Domain\User\Events\UserCreatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 

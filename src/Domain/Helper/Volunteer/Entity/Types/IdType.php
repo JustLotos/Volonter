@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Flash\Learner\Entity\Types;
+namespace App\Domain\Helper\Volunteer\Entity\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\GuidType;
 
 class IdType extends GuidType
 {
-    public const NAME = 'flash_learner_id';
+    public const NAME = 'helper_volunteer_id';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {

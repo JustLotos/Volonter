@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Model\Flash\Entity\Learner;
 
-use App\Domain\Flash\Learner\Entity\Types\Session;
+use App\Domain\Helper\Volunteer\Entity\Types\Session;
 use PHPUnit\Framework\TestCase;
 
 class SessionTest extends TestCase
