@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Domain\User\UseCase\Register\ByEmail\Request;
 
-use App\Domain\Flusher;
 use App\Domain\User\Entity\Types\ConfirmToken;
 use App\Domain\User\Entity\Types\Email;
 use App\Domain\User\Entity\Types\Id;
@@ -87,7 +86,6 @@ class Handler
         $message = BaseMessage::getDefaultMessage(
             $user->getEmail(),
             'Регистрация в приложении Flash',
-            'Подтверждение регистрации',
             $this->builder
                 ->setParam('url', $url)
                 ->setParam('token', $user->getConfirmToken()->getToken())

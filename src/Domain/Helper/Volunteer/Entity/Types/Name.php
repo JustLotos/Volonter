@@ -15,13 +15,13 @@ class Name
     /**
      * @ORM\Column(type="string", nullable=true)
      * @Serializer\Type(name="string")
-     * @Serializer\Groups({App\Domain\Helper\Entity\Volunteer\Volunteer::GROUP_SIMPLE})
+     * @Serializer\Groups({App\Domain\Helper\Volunteer\Entity\Volunteer::GROUP_SIMPLE})
      */
     private $first;
     /**
      * @ORM\Column(type="string", nullable=true)
      * @Serializer\Type(name="string")
-     * @Serializer\Groups({App\Domain\Helper\Entity\Volunteer\Volunteer::GROUP_SIMPLE})
+     * @Serializer\Groups({App\Domain\Helper\Volunteer\Entity\Volunteer::GROUP_SIMPLE})
      */
     private $last;
 

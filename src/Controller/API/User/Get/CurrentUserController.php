@@ -6,7 +6,6 @@ namespace App\Controller\API\User\Get;
 
 use App\Controller\ControllerHelper;
 use App\Domain\User\Entity\User;
-use App\Controller\API\BaseController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

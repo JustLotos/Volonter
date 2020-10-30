@@ -19,7 +19,7 @@ use Webmozart\Assert\Assert;
 /**
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="user_users", uniqueConstraints={
+ * @ORM\Table(name="users_users", uniqueConstraints={
  *     @ORM\UniqueConstraint(columns={"email"}),
  *     @ORM\UniqueConstraint(columns={"confirm_token_token"})
  * })

@@ -28,5 +28,5 @@ doctrine:
                 is_bundle: false
                 type: annotation
                 dir: '%kernel.project_dir%/src/Domain/Helper/Volunteer/Entity'
-                prefix: 'App\Domain\Helper\Entity'
+                prefix: 'App\Domain\Helper\Volunteer\Entity'
                 alias: Volunteer

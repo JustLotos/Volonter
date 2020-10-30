@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Domain\User\Reset\ByEmail;
 
-use App\DataFixtures\User\UserFixtures;
+use App\DataFixtures\Helper\UserFixtures;
 use App\Tests\AbstractTest;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\JsonResponse;

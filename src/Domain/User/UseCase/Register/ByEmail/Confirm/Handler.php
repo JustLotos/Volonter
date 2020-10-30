@@ -53,7 +53,6 @@ class Handler
         $message = BaseMessage::getDefaultMessage(
             $user->getEmail(),
             'Регистрация в приложении Flash',
-            'Подтверждение регистрации',
             $this->builder->build('mail/user/reset/byEmail/confirm.html.twig')
         );
 

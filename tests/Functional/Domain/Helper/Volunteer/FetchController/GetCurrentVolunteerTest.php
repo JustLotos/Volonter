@@ -2,23 +2,27 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Domain\Flash\Learner\Get;
+namespace App\Tests\Functional\Domain\Helper\Volunteer\FetchController;
 
+
+use App\DataFixtures\Helper\VolunteerFixtures;
 use App\DataFixtures\User\UserFixtures;
 use App\Tests\AbstractTest;
-use Symfony\Component\HttpFoundation\Response;
 
-class ActionTest extends AbstractTest
+class GetCurrentVolunteerTest extends AbstractTest
 {
     protected $method = 'GET';
-    protected $uri = '/learner/current/';
+    protected $uri = '/volunteer/current/';
 
     public function getFixtures() : array
     {
-        return [UserFixtures::class];
+        return [
+            UserFixtures::class,
+            VolunteerFixtures::class
+        ];
     }
 
-    public function testValid() : void
+    public function testBaseFetch() : void
     {
         $this->makeRequestWithAuth();
 
@@ -29,5 +33,8 @@ class ActionTest extends AbstractTest
         self::assertArrayHasKey('status', $this->content);
         self::assertArrayHasKey('createdAt', $this->content);
         self::assertArrayHasKey('updatedAt', $this->content);
+        self::assertArrayHasKey('name', $this->content);
+        self::assertArrayHasKey('first', $this->content['name']);
+        self::assertArrayHasKey('last', $this->content['name']);
     }
 }

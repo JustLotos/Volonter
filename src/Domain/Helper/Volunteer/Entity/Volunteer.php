@@ -25,8 +25,8 @@ class Volunteer
 
     /**
      * @var Name
-     * @ORM\Embedded(class="App\Domain\Helper\Entity\Volunteer\Types\Name")
-     * @Serializer\Type(name="App\Domain\Helper\Entity\Volunteer\Types\Name")
+     * @ORM\Embedded(class="App\Domain\Helper\Volunteer\Entity\Types\Name")
+     * @Serializer\Type(name="App\Domain\Helper\Volunteer\Entity\Types\Name")
      * @Serializer\Groups({Volunteer::GROUP_SIMPLE})
      */
     private $name;

@@ -10,7 +10,8 @@
         <ini name="error_reporting" value="-1" />
         <server name="APP_ENV" value="test" force="true" />
         <server name="SHELL_VERBOSITY" value="-1" />
-
+        <server name="KERNEL_CLASS" value="App\Kernel" />
+        <server name="SYMFONY_DEPRECATIONS_HELPER" value="weak" />
         <!-- ###+ symfony/framework-bundle ### -->
         <env name="APP_ENV" value="dev"/>
         <env name="APP_SECRET" value="ef7eefed0137a34033810ce6b7e1fc28"/>

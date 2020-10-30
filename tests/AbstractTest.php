@@ -46,7 +46,7 @@ abstract class AbstractTest extends WebTestCase
     protected function setUp() : void
     {
         static::getClient();
-        $this->url = getenv('DEFAULT_HOST').'/api/v1';
+        $this->url = getenv('DEFAULT_HOST').'/api';
         $this->loadFixtures($this->getFixtures());
     }
 
@@ -250,7 +250,6 @@ abstract class AbstractTest extends WebTestCase
     {
         $url = $url ? $this->url.$url : $this->getUrl();
         $method = $method ? $method : $this->method;
-
         $client = self::getClient();
         $client->request($method, $url, [], [], ['CONTENT_TYPE' => 'application/json'], json_encode($data));
         $this->response = $client->getResponse();
@@ -262,14 +261,9 @@ abstract class AbstractTest extends WebTestCase
     {
         $url = $url ? $this->url.$url : $this->getUrl();
         $method = $method ? $method : $this->method;
-
         $client = $this->createAuthenticatedClient();
-
-        ;
-
         $client->request($method, $url, [], [], ['CONTENT_TYPE' => 'application/json'], json_encode($data));
         $this->response = $client->getResponse();
-        var_dump($this->response);
         $this->content = json_decode($this->response->getContent(), true);
         return $client;
     }
