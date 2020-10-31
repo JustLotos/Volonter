@@ -22,4 +22,10 @@ class FlushService
     {
         $this->em->flush();
     }
+
+    public function remove($object): void
+    {
+        $this->em->remove($object);
+    }
+
 }

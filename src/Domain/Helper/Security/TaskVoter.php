@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Security\Voters;
+namespace App\Domain\Helper\Security;
 
-use App\Domain\Flash\Entity\Deck\Deck;
+use App\Domain\Helper\Task\Entity\Task;
 use App\Domain\User\Entity\User;
 use LogicException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
 
-class DeckVoter extends Voter
+class TaskVoter extends Voter
 {
     public const VIEW = 'view';
     public const EDIT = 'edit';
-    public const NOT_FOUND_MESSAGE = 'Deck not found';
+    public const NOT_FOUND_MESSAGE = 'Task not found';
 
     private $security;
 
@@ -30,7 +30,7 @@ class DeckVoter extends Voter
             return false;
         }
 
-        if (! $subject instanceof Deck) {
+        if (! $subject instanceof Task) {
             return false;
         }
 
@@ -45,31 +45,26 @@ class DeckVoter extends Voter
         if (! $user instanceof User) {
             return false;
         }
-
-        /** @var Deck $deck */
-        $deck = $subject;
-
+        /** @var Task $task */
+        $task = $subject;
 
         switch ($attribute) {
             case self::VIEW:
-                return $this->canView($deck, $user);
+                return $this->canView($task, $user);
             case self::EDIT:
-                return $this->canEdit($deck, $user);
+                return $this->canEdit($task, $user);
         }
 
         throw new LogicException('This code should not be reached!');
     }
 
-    private function canView(Deck $deck, User $user)
+    private function canView(Task $task, User $user)
     {
-        if ($this->canEdit($deck, $user)) {
-            return true;
-        }
-        return false;
+        return $this->canEdit($task, $user);
     }
 
-    private function canEdit(Deck $deck, User $user)
+    private function canEdit(Task $task, User $user)
     {
-        return $user->getId()->getValue() === $deck->getLearner()->getId()->getValue();
+        return $user->getId()->getValue() === $task->getVolunteer()->getId()->getValue();
     }
 }

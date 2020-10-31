@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace App\Controller\API\Helper\Task;
 
 use App\Controller\ControllerHelper;
+use App\Domain\Helper\Security\TaskVoter;
 use App\Domain\Helper\Task\Entity\Task;
 use App\Domain\Helper\Task\UseCase\Create\Command as CreateCommand;
 use App\Domain\Helper\Task\UseCase\Create\Handler as CreateHandler;
+use App\Domain\Helper\Task\UseCase\Remove\Handler as RemoveHandler;
+use App\Domain\Helper\Task\UseCase\Update\Command as UpdateCommand;
+use App\Domain\Helper\Task\UseCase\Update\Handler as UpdateHandler;
 use App\Domain\Helper\Volunteer\Entity\Types\Id;
 use App\Domain\Helper\Task\TaskRepository;
 use App\Domain\User\Entity\User;
@@ -26,10 +30,17 @@ class CrudController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
-
         $tasks = $repository->getAll(new Id($user->getId()->getValue()));
+        return  $this->response($this->serializer->serialize($tasks,  Task::GROUP_SIMPLE));
+    }
 
-        return  $this->response($this->serializer->serialize($tasks));
+    /** @Route("/get/{id}/", name="getTask", methods={"GET"}) */
+    public function getTask(TaskRepository $repository, Task $task) : Response
+    {
+        $this->denyAccessUnlessGranted(TaskVoter::EDIT, $task, TaskVoter::NOT_FOUND_MESSAGE);
+        /** @var User $user */
+        $user = $this->getUser();
+        return  $this->response($this->serializer->serialize($task, Task::GROUP_SIMPLE));
     }
 
     /** @Route("/new/", name="createNewTask", methods={"POST"}) */
@@ -40,9 +51,24 @@ class CrudController extends AbstractController
 
         /** @var User $user */
         $user = $this->getUser();
-
         $task = $handler->handle($user, $command);
-
         return $this->response($this->serializer->serialize($task, Task::GROUP_SIMPLE));
+    }
+
+    /** @Route("/update/{id}/", name="updateTask", methods={"PUT"}) */
+    public function update(Request $request, Task $task, UpdateHandler $handler): Response {
+        $this->denyAccessUnlessGranted(TaskVoter::EDIT, $task, TaskVoter::NOT_FOUND_MESSAGE);
+        /** @var UpdateCommand $command */
+        $command = $this->serializer->deserialize($request, UpdateCommand::class);
+        $this->validator->validate($command);
+        $handler->handle($task, $command);
+        return $this->response($this->getSimpleSuccessResponse());
+    }
+
+    /** @Route("/remove/{id}/", name="deleteTask", methods={"POST"}) */
+    public function remove(Task $task, RemoveHandler $handler): Response {
+        $this->denyAccessUnlessGranted(TaskVoter::EDIT, $task, TaskVoter::NOT_FOUND_MESSAGE);
+        $handler->handle($task);
+        return $this->response($this->getSimpleSuccessResponse());
     }
 }

@@ -40,4 +40,8 @@ class TaskRepository extends ServiceEntityRepository
     public function getAll(VolunteerId $id) {
         return $this->repository->findBy(['volunteer' => $id]);
     }
+
+    public function remove(Task $task) {
+        $this->manager->remove($task);
+    }
 }

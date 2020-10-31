@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Functional\Domain\Helper\Task\CrudController;
 
 use App\DataFixtures\Helper\TaskFixtures;
-use App\DataFixtures\User\UserFixtures;
 use App\Tests\AbstractTest;
 
 class CgetTest extends AbstractTest

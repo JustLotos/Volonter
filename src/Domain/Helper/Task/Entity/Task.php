@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Helper\Task\Entity;
 
+use App\Domain\Helper\Task\UseCase\Update\Command;
 use App\Domain\Helper\Volunteer\Entity\Types\Id;
 use App\Domain\Helper\Volunteer\Entity\Volunteer;
 use Doctrine\ORM\Mapping as ORM;
@@ -65,7 +66,8 @@ class Task
         return $this->title;
     }
 
-    public function update(string $title): self {
-        $this->title = $title;
+    public function update(Command $command): self {
+        $this->title = $command->title;
+        return $this;
     }
 }

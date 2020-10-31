@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /** @Route(value="api/volunteer") */
-class FetchController extends AbstractController
+class CrudController extends AbstractController
 {
     use ControllerHelper;
     /** @Route("/current/", name="getCurrentVolunteer", methods={"GET"}) */
