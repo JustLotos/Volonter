@@ -18,9 +18,10 @@ class Task
 {
     /**
      * @var Id
+     * @ORM\Id
      * @ORM\Column(type="helper_task_id")
      * @Serializer\Groups({Task::GROUP_SIMPLE})
-     * @ORM\Id
+     * @Serializer\Type(name="string")
      */
     private $id;
 

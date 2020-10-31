@@ -6,7 +6,6 @@ namespace App\Controller\API\User\Register;
 
 use App\Controller\ControllerHelper;
 use App\Domain\User\Entity\User;
-use App\Domain\User\Entity\UserDTO;
 use App\Domain\User\UseCase\Register\ByEmail\Confirm\Command as ConfirmCommand;
 use App\Domain\User\UseCase\Register\ByEmail\Confirm\Handler as ConfirmHandler;
 use App\Domain\User\UseCase\Register\ByEmail\Request\Command as RegisterPayloads;
@@ -29,7 +28,6 @@ class RegisterByEmailController extends AbstractController
     ) {
         /** @var RegisterPayloads $command */
         $command = $this->serializer->deserialize($request, RegisterPayloads::class);
-        /** @var User $user */
         $user = $handler->handle($command);
         return $ash->handleAuthenticationSuccess($user);
     }

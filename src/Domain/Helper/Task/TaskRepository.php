@@ -32,9 +32,9 @@ class TaskRepository extends ServiceEntityRepository
         return $this->repository->findOneBy(['id' => $id]);
     }
 
-    public function add(Task $learner)
+    public function add(Task $task)
     {
-        $this->manager->persist($learner);
+        $this->manager->persist($task);
     }
 
     public function getAll(VolunteerId $id) {
