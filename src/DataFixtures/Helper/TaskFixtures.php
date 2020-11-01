@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\DataFixtures\Helper;
 
+use App\Domain\Helper\Task\UseCase\Create\Command;
 use App\Domain\Helper\Volunteer\Entity\Types\Id as TaskId;
 use App\Domain\Helper\Volunteer\Entity\Volunteer;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -23,13 +24,22 @@ class TaskFixtures extends BaseFixture implements ContainerAwareInterface, Depen
         $this->createMany(self::ADMIN_TASK_COUNT, self::ADMINS, function () {
             /** @var Volunteer $volunteer */
             $volunteer = $this->getRandomReference(VolunteerFixtures::ADMINS);
-            return new Task($volunteer, TaskId::next(), $this->faker->title);
+
+            $command = new Command();
+            $command->title = $this->faker->title;
+            $command->body = $this->faker->text;
+
+            return new Task($volunteer, TaskId::next(), $command, new \DateTimeImmutable());
         });
 
-        $this->createMany(20, self::USERS, function () {
+        $this->createMany(1, self::USERS, function () {
             /** @var Volunteer $volunteer */
             $volunteer = $this->getRandomReference(VolunteerFixtures::USERS);
-            return new Task($volunteer, TaskId::next(), $this->faker->title);
+            $command = new Command();
+            $command->title = $this->faker->title;
+            $command->body = $this->faker->text;
+
+            return new Task($volunteer, TaskId::next(), $command, new \DateTimeImmutable());
         });
 
 
