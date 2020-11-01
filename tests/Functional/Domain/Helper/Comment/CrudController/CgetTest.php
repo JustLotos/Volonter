@@ -22,7 +22,7 @@ class CgetTest extends AbstractTest
         $this->makeRequestWithAuth([], '/task/cget/', 'GET');
         $task = $this->content[0];
 
-        $this->makeRequestWithAuth([], $this->uri.$task['id']);
+        $this->makeRequestWithAuth([], $this->uri.$task['id'].'/');
 
         self::assertResponseOk($this->response);
         self::assertArrayHasKey('id', $this->content[0]);

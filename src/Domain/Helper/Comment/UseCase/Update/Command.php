@@ -13,11 +13,4 @@ class Command
      * @Serializer\Type(name="string")
      */
     public $text;
-
-
-    /**
-     * @Assert\NotBlank()
-     * @Serializer\Type(name="string")
-     */
-    public $taskId;
 }

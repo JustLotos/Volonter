@@ -4,31 +4,33 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Domain\Helper\Comment\CrudController;
 
-use App\DataFixtures\Helper\TaskFixtures;
+use App\DataFixtures\Helper\CommentFixtures;
 use App\Domain\Helper\Comment\Entity\Comment;
 use App\Tests\AbstractTest;
 
 class GetTest extends AbstractTest
 {
     protected $method = 'GET';
-    protected $uri = '/task/get/';
+    protected $uri = '/comment/get/';
 
     public function getFixtures() : array
     {
-        return [TaskFixtures::class];
+        return [CommentFixtures::class];
     }
 
     public function testBaseFetch() : void
     {
-        $this->makeRequestWithAuth([], '/task/cget/', 'GET');
-        /** @var Comment $task */
+        $this->makeRequestWithAuth([], '/task/cget/');
         $task = $this->content[0];
-        $this->makeRequestWithAuth();
 
-        $this->makeRequestWithAuth([], $this->uri.$task['id'].'/');
+        $this->makeRequestWithAuth([],  '/comment/cget/'.$task['id'].'/');
+        /** @var Comment $task */
+
+        $comment = $this->content[0];
+        $this->makeRequestWithAuth([], $this->uri.$comment['id'].'/');
 
         self::assertResponseOk($this->response);
         self::assertArrayHasKey('id', $this->content);
-        self::assertArrayHasKey('title', $this->content);
+        self::assertArrayHasKey('text', $this->content);
     }
 }

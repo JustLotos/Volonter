@@ -4,22 +4,19 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Domain\Helper\Comment\CrudController;
 
-use App\DataFixtures\Helper\TaskFixtures;
-use App\DataFixtures\User\UserFixtures;
+use App\DataFixtures\Helper\CommentFixtures;
 use App\Domain\Helper\Comment\Entity\Comment;
 use App\Tests\AbstractTest;
-use App\Tests\APITestCase;
-use Doctrine\ORM\EntityManager;
 
 class RemoveTest extends AbstractTest
 {
     protected $method = 'POST';
-    protected $uri = '/task/remove/';
+    protected $uri = '/comment/remove/';
 
 
     public function getFixtures() : array
     {
-        return [TaskFixtures::class];
+        return [CommentFixtures::class];
     }
 
     public function testRemove() : void
@@ -28,8 +25,11 @@ class RemoveTest extends AbstractTest
 
         /** @var Comment $task */
         $task = $this->content[0];
+        $this->makeRequestWithAuth([], '/comment/cget/'.$task['id'].'/', 'GET');
 
-        $this->makeRequestWithAuth([], $this->uri.$task['id'].'/');
+        $comment = $this->content[0];
+        $this->makeRequestWithAuth([], $this->uri.$comment['id'].'/');
+
         $this->assertResponseOk($this->response);
     }
 }
