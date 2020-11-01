@@ -14,4 +14,11 @@ class Command
      * @Serializer\Type(name="string")
      */
     public $title;
+
+    /**
+     * @Assert\Length(max="255")
+     * @Assert\NotBlank()
+     * @Serializer\Type(name="string")
+     */
+    public $body;
 }

@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Domain\Helper\Task\Entity;
 
+use App\Domain\Helper\Task\UseCase\Create\Command as CreateCommand;
 use App\Domain\Helper\Task\UseCase\Update\Command;
 use App\Domain\Helper\Volunteer\Entity\Types\Id;
 use App\Domain\Helper\Volunteer\Entity\Volunteer;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
@@ -35,6 +37,28 @@ class Task
     private $title;
 
     /**
+     * @Serializer\Type(name="string")
+     * @ORM\Column(type="text", length=255)
+     * @Serializer\Groups({Task::GROUP_SIMPLE})
+     */
+    private $body;
+
+    /**
+     * @var DateTimeImmutable
+     * @ORM\Column(type="datetime_immutable")
+     * @Serializer\Groups({Task::GROUP_DETAILS})
+     */
+    private $createdAt;
+
+    /**
+     * @var DateTimeImmutable
+     * @ORM\Column(type="datetime_immutable")
+     * @Serializer\Groups({Task::GROUP_DETAILS})
+     */
+    private $updatedAt;
+
+
+    /**
      * @var Volunteer
      * @ORM\ManyToOne(targetEntity="App\Domain\Helper\Volunteer\Entity\Volunteer", inversedBy="tasks")
      * @ORM\JoinColumn(name="volunteer_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
@@ -52,11 +76,14 @@ class Task
     public const GROUP_SETTINGS = 'GROUP_SETTINGS';
     public const GROUP_DETAILS  = 'GROUP_DETAILS';
 
-    public function __construct(Volunteer $volunteer, Id $id, string $title)
+    public function __construct(Volunteer $volunteer, Id $id, CreateCommand $command, DateTimeImmutable $createdAt)
     {
         $this->volunteer = $volunteer;
         $this->id = $id;
-        $this->title = $title;
+        $this->title = $command->title;
+        $this->body = $command->body;
+        $this->createdAt = $createdAt;
+        $this->updatedAt = $createdAt;
     }
 
     public function getVolunteer() : Volunteer
@@ -75,6 +102,8 @@ class Task
 
     public function update(Command $command): self {
         $this->title = $command->title;
+        $this->body = $command->title;
+        $this->updatedAt = new DateTimeImmutable('now');
         return $this;
     }
 }

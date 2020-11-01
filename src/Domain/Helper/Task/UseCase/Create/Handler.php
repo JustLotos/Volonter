@@ -3,12 +3,13 @@
 namespace App\Domain\Helper\Task\UseCase\Create;
 
 use App\Domain\Helper\Task\Entity\Task;
-use App\Domain\Helper\Task\CommentRepository;
+use App\Domain\Helper\Task\TaskRepository;
 use App\Domain\Helper\Volunteer\Entity\Types\Id;
 use App\Domain\Helper\Volunteer\Entity\Volunteer;
 use App\Domain\Helper\Volunteer\VolunteerRepository;
 use App\Domain\User\Entity\User;
 use App\Service\FlushService;
+use DateTimeImmutable;
 
 class Handler
 {
@@ -18,7 +19,7 @@ class Handler
 
     public function __construct(
         VolunteerRepository $volunteerRepository,
-        CommentRepository $taskRepository,
+        TaskRepository $taskRepository,
         FlushService $flushService
     ){
         $this->volunteerRepository = $volunteerRepository;
@@ -30,7 +31,7 @@ class Handler
 
         /** @var Volunteer $volunteer */
         $volunteer = $this->volunteerRepository->getById(new Id($user->getId()));
-        $task = new Task($volunteer, Id::next(), $command->title);
+        $task = new Task($volunteer, Id::next(), $command, new DateTimeImmutable());
         $this->taskRepository->add($task);
         $this->flushService->flush();
 
