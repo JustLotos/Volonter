@@ -14,19 +14,19 @@ use App\Domain\Helper\Task\Entity\Task;
 
 class TaskFixtures extends BaseFixture implements ContainerAwareInterface, DependentFixtureInterface
 {
-    public const ADMIN = 'ADMIN_HELPER_TASK';
+    public const ADMINS = 'ADMIN_HELPER_TASK';
     public const ADMIN_TASK_COUNT = 20;
-    public const USER = 'USER_HELPER_TASK';
+    public const USERS = 'USER_HELPER_TASK';
 
     public function loadData(ObjectManager $manager) : void
     {
-        $this->createMany(self::ADMIN_TASK_COUNT, self::ADMIN, function () {
+        $this->createMany(self::ADMIN_TASK_COUNT, self::ADMINS, function () {
             /** @var Volunteer $volunteer */
             $volunteer = $this->getRandomReference(VolunteerFixtures::ADMINS);
             return new Task($volunteer, TaskId::next(), $this->faker->title);
         });
 
-        $this->createMany(20, self::USER, function () {
+        $this->createMany(20, self::USERS, function () {
             /** @var Volunteer $volunteer */
             $volunteer = $this->getRandomReference(VolunteerFixtures::USERS);
             return new Task($volunteer, TaskId::next(), $this->faker->title);

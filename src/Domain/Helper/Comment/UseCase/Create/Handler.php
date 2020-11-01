@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Helper\Task\UseCase\Create;
+namespace App\Domain\Helper\Comment\UseCase\Create;
 
 use App\Domain\Helper\Task\Entity\Task;
 use App\Domain\Helper\Task\CommentRepository;

@@ -38,6 +38,13 @@ class Volunteer
      */
     private $tasks;
 
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="App\Domain\Helper\Comment\Entity\Comment", mappedBy="volunteer", orphanRemoval=true, cascade={"persist"})
+     */
+    private $comments;
+
     public const GROUP_SIMPLE   = 'GROUP_SIMPLE';
     public const GROUP_SETTINGS = 'GROUP_SETTINGS';
     public const GROUP_DETAILS  = 'GROUP_DETAILS';

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Helper\Task\UseCase\Remove;
+namespace App\Domain\Helper\Comment\UseCase\Remove;
 
 use App\Domain\Helper\Task\Entity\Task;
 use App\Domain\Helper\Task\CommentRepository;

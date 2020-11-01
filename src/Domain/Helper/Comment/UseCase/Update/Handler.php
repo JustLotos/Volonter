@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Domain\Helper\Task\UseCase\Update;
+namespace App\Domain\Helper\Comment\UseCase\Update;
 
-use App\Domain\Helper\Task\Entity\Task;
-use App\Domain\Helper\Task\CommentRepository;
+use App\Domain\Helper\Comment\CommentRepository;
 use App\Domain\Helper\Volunteer\Entity\Types\Id;
 use App\Domain\Helper\Volunteer\Entity\Volunteer;
 use App\Domain\Helper\Volunteer\VolunteerRepository;

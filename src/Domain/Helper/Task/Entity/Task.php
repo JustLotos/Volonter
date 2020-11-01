@@ -7,6 +7,7 @@ namespace App\Domain\Helper\Task\Entity;
 use App\Domain\Helper\Task\UseCase\Update\Command;
 use App\Domain\Helper\Volunteer\Entity\Types\Id;
 use App\Domain\Helper\Volunteer\Entity\Volunteer;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 
@@ -39,6 +40,12 @@ class Task
      * @ORM\JoinColumn(name="volunteer_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     private $volunteer;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="App\Domain\Helper\Comment\Entity\Comment", mappedBy="task", orphanRemoval=true, cascade={"persist"})
+     */
+    private $comments;
 
 
     public const GROUP_SIMPLE   = 'GROUP_SIMPLE';
