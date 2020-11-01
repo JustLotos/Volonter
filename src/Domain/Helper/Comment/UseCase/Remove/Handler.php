@@ -2,26 +2,26 @@
 
 namespace App\Domain\Helper\Comment\UseCase\Remove;
 
-use App\Domain\Helper\Task\Entity\Task;
-use App\Domain\Helper\Task\CommentRepository;
+use App\Domain\Helper\Comment\CommentRepository;
+use App\Domain\Helper\Comment\Entity\Comment;
 use App\Service\FlushService;
 
 class Handler
 {
     private $flushService;
-    private $taskRepository;
+    private $commentRepository;
 
     public function __construct(
-        CommentRepository $taskRepository,
+        CommentRepository $commentRepository,
         FlushService $flushService
     ){
         $this->flushService = $flushService;
-        $this->taskRepository = $taskRepository;
+        $this->commentRepository = $commentRepository;
     }
 
-    public function handle(Task $task): Task {
-        $this->taskRepository->remove($task);
+    public function handle(Comment $comment): Comment {
+        $this->commentRepository->remove($comment);
         $this->flushService->flush();
-        return $task;
+        return $comment;
     }
 }

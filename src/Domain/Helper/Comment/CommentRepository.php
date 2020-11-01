@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Helper\Comment;
 
-use App\Domain\Helper\Task\Entity\Task;
-use App\Domain\Helper\Task\Entity\Types\Id;
-use App\Domain\Helper\Volunteer\Entity\Types\Id as VolunteerId;
+use App\Domain\Helper\Comment\Entity\Comment;
+use App\Domain\Helper\Comment\Entity\Types\Id;
+use App\Domain\Helper\Task\Entity\Types\Id as TaskId;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManager;
@@ -22,9 +22,9 @@ class CommentRepository extends ServiceEntityRepository
 
     public function __construct(ManagerRegistry $registry, EntityManagerInterface $em)
     {
-        parent::__construct($registry, Task::class);
+        parent::__construct($registry, Comment::class);
         $this->manager = $em;
-        $this->repository = $em->getRepository(Task::class);
+        $this->repository = $em->getRepository(Comment::class);
     }
 
     public function getById(Id $id)
@@ -32,16 +32,16 @@ class CommentRepository extends ServiceEntityRepository
         return $this->repository->findOneBy(['id' => $id]);
     }
 
-    public function add(Task $task)
+    public function add(Comment $comment)
     {
-        $this->manager->persist($task);
+        $this->manager->persist($comment);
     }
 
-    public function getAll(VolunteerId $id) {
-        return $this->repository->findBy(['volunteer' => $id]);
+    public function getAllByTask(TaskId $id) {
+        return $this->repository->findBy(['task' => $id]);
     }
 
-    public function remove(Task $task) {
-        $this->manager->remove($task);
+    public function remove(Comment $comment) {
+        $this->manager->remove($comment);
     }
 }

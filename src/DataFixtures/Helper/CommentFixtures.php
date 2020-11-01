@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\DataFixtures\Helper;
 
 use App\Domain\Helper\Comment\Entity\Comment;
-use App\Domain\Helper\Volunteer\Entity\Types\Id as CommentId;
+use App\Domain\Helper\Comment\Entity\Types\Id as CommentId;
 use App\Domain\Helper\Volunteer\Entity\Volunteer;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -16,7 +16,7 @@ use App\Domain\Helper\Task\Entity\Task;
 class CommentFixtures extends BaseFixture implements ContainerAwareInterface, DependentFixtureInterface
 {
     public const ADMIN = 'ADMIN_HELPER_COMMENT';
-    public const ADMIN_COMMENT_COUNT = 40;
+    public const ADMIN_COMMENT_COUNT = 500;
     public const USER = 'USER_HELPER_COMMENT';
 
     public function loadData(ObjectManager $manager) : void
@@ -46,7 +46,8 @@ class CommentFixtures extends BaseFixture implements ContainerAwareInterface, De
     public function getDependencies()
     {
         return [
-            VolunteerFixtures::class
+            VolunteerFixtures::class,
+            TaskFixtures::class
         ];
     }
 }

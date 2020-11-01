@@ -9,9 +9,15 @@ use JMS\Serializer\Annotation as Serializer;
 class Command
 {
     /**
-     * @Assert\Length(max="255")
      * @Assert\NotBlank()
      * @Serializer\Type(name="string")
      */
-    public $title;
+    public $text;
+
+
+    /**
+     * @Assert\NotBlank()
+     * @Serializer\Type(name="string")
+     */
+    public $taskId;
 }

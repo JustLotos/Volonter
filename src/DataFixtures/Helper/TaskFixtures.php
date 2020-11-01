@@ -15,7 +15,7 @@ use App\Domain\Helper\Task\Entity\Task;
 class TaskFixtures extends BaseFixture implements ContainerAwareInterface, DependentFixtureInterface
 {
     public const ADMINS = 'ADMIN_HELPER_TASK';
-    public const ADMIN_TASK_COUNT = 20;
+    public const ADMIN_TASK_COUNT = 10;
     public const USERS = 'USER_HELPER_TASK';
 
     public function loadData(ObjectManager $manager) : void

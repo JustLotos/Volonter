@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Helper\Comment\Entity;
 
+use App\Domain\Helper\Comment\UseCase\Update\Command;
 use App\Domain\Helper\Task\Entity\Task;
-use App\Domain\Helper\Volunteer\Entity\Types\Id;
+use App\Domain\Helper\Comment\Entity\Types\Id;
 use App\Domain\Helper\Volunteer\Entity\Volunteer;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
@@ -94,5 +95,11 @@ class Comment
 
     public function getText(): string {
         return $this->text;
+    }
+
+    public function update(Command $command): self {
+        $this->text = $command->text;
+        $this->updatedAt = new DateTimeImmutable('now');
+        return $this;
     }
 }
