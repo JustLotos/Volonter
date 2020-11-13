@@ -19,7 +19,10 @@ class CreateTest extends AbstractTest
 
     public function testCreateValid() : void
     {
-        $this->makeRequestWithAuth([ 'title' => 'test' ]);
+        $this->makeRequestWithAuth([
+            'title' => 'test',
+            'body' => 'test'
+        ]);
 
         self::assertResponseOk($this->response);
         self::assertArrayHasKey('id', $this->content);

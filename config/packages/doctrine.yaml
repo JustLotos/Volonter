@@ -15,6 +15,7 @@ doctrine:
             helper_volunteer_id:     'App\Domain\Helper\Volunteer\Entity\Types\IdType'
             helper_task_id:          'App\Domain\Helper\Task\Entity\Types\IdType'
             helper_comment_id:       'App\Domain\Helper\Comment\Entity\Types\IdType'
+            helper_tag_id:           'App\Domain\Helper\Tag\Entity\Types\IdType'
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
@@ -44,3 +45,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Domain/Helper/Comment/Entity'
                 prefix: 'App\Domain\Helper\Comment\Entity'
                 alias: Comment
+            Tag:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Domain/Helper/Tag/Entity'
+                prefix: 'App\Domain\Helper\Tag\Entity'
+                alias: Tag

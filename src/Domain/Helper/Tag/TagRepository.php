@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Helper\Task;
+namespace App\Domain\Helper\Tag;
 
-use App\Domain\Helper\Task\Entity\Task;
-use App\Domain\Helper\Task\Entity\Types\Id;
+use App\Domain\Helper\Tag\Entity\Tag;
+use App\Domain\Helper\Tag\Entity\Types\Id;
 use App\Domain\Helper\Volunteer\Entity\Types\Id as VolunteerId;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 
-class TaskRepository extends ServiceEntityRepository
+class TagRepository extends ServiceEntityRepository
 {
     /** @var EntityManager */
     private $manager;
@@ -22,9 +22,9 @@ class TaskRepository extends ServiceEntityRepository
 
     public function __construct(ManagerRegistry $registry, EntityManagerInterface $em)
     {
-        parent::__construct($registry, Task::class);
+        parent::__construct($registry, Tag::class);
         $this->manager = $em;
-        $this->repository = $em->getRepository(Task::class);
+        $this->repository = $em->getRepository(Tag::class);
     }
 
     public function getById(Id $id)
@@ -32,9 +32,9 @@ class TaskRepository extends ServiceEntityRepository
         return $this->repository->findOneBy(['id' => $id]);
     }
 
-    public function add(Task $task)
+    public function add(Tag $tag)
     {
-        $this->manager->persist($task);
+        $this->manager->persist($tag);
     }
 
     public function getAll(VolunteerId $id)
@@ -42,8 +42,8 @@ class TaskRepository extends ServiceEntityRepository
         return $this->repository->findBy(['volunteer' => $id]);
     }
 
-    public function remove(Task $task)
+    public function remove(Tag $tag)
     {
-        $this->manager->remove($task);
+        $this->manager->remove($tag);
     }
 }

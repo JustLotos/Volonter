@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Domain\Helper\Task\CrudController;
 
+use App\DataFixtures\Helper\TagFixtures;
 use App\DataFixtures\Helper\TaskFixtures;
 use App\Tests\AbstractTest;
 
@@ -14,7 +15,7 @@ class CgetTest extends AbstractTest
 
     public function getFixtures() : array
     {
-        return [TaskFixtures::class];
+        return [TaskFixtures::class, TagFixtures::class];
     }
 
     public function testBaseFetch() : void

@@ -22,4 +22,9 @@ class Command
      * @Serializer\Type(name="string")
      */
     public $body;
+
+    /**
+     * @Serializer\Type(name="array")
+     */
+    public $tags;
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\DataFixtures\Helper;
 
 use App\Domain\Helper\Task\UseCase\Create\Command;
-use App\Domain\Helper\Volunteer\Entity\Types\Id as TaskId;
+use App\Domain\Helper\Task\Entity\Types\Id as TaskId;
 use App\Domain\Helper\Volunteer\Entity\Volunteer;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -16,7 +16,7 @@ use App\Domain\Helper\Task\Entity\Task;
 class TaskFixtures extends BaseFixture implements ContainerAwareInterface, DependentFixtureInterface
 {
     public const ADMINS = 'ADMIN_HELPER_TASK';
-    public const ADMIN_TASK_COUNT = 10;
+    public const ADMIN_TASK_COUNT = 3;
     public const USERS = 'USER_HELPER_TASK';
 
     public function loadData(ObjectManager $manager) : void

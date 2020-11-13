@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Helper\Task\UseCase\Update;
+namespace App\Domain\Helper\Task\UseCase\AddTag;
 
 use App\Domain\Helper\Tag\TagRepository;
 use App\Domain\Helper\Task\Entity\Task;
@@ -13,31 +13,24 @@ class Handler
     use TaskTrait;
 
     private $flushService;
-    private $tagRepository;
-    /**
-     * @var TaskRepository
-     */
     private $taskRepository;
+    private $tagRepository;
 
     public function __construct(
-        FlushService $flushService,
+        TaskRepository $taskRepository,
         TagRepository $tagRepository,
-        TaskRepository $taskRepository
+        FlushService $flushService
     ) {
         $this->flushService = $flushService;
-        $this->tagRepository = $tagRepository;
         $this->taskRepository = $taskRepository;
+        $this->tagRepository = $tagRepository;
     }
 
-    public function handle(Task $task, Command $command): Task
+    public function handle(Command $command, Task $task): Task
     {
-        $task->update($command);
-        $this->removeTags($task, $command);
         $this->addTags($task, $command, $this->tagRepository);
-
+        $this->taskRepository->add($task);
         $this->flushService->flush();
-
-        var_dump($this->taskRepository->findOneBy(['id'=>$task->getId()])->getTags());
         return $task;
     }
 }

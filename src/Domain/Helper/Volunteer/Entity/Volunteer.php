@@ -34,7 +34,12 @@ class Volunteer
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="App\Domain\Helper\Task\Entity\Task", mappedBy="volunteer", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(
+     *     targetEntity="App\Domain\Helper\Task\Entity\Task",
+     *     mappedBy="volunteer",
+     *     orphanRemoval=true,
+     *     cascade={"persist"}
+     * )
      */
     private $tasks;
 

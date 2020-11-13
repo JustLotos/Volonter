@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Domain\Helper\Task\Entity;
 
+use App\Domain\Helper\Tag\Entity\Tag;
 use App\Domain\Helper\Task\UseCase\Create\Command as CreateCommand;
 use App\Domain\Helper\Task\UseCase\Update\Command;
-use App\Domain\Helper\Volunteer\Entity\Types\Id;
+use App\Domain\Helper\Task\Entity\Types\Id;
 use App\Domain\Helper\Volunteer\Entity\Volunteer;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -57,19 +58,36 @@ class Task
      */
     private $updatedAt;
 
-
     /**
      * @var Volunteer
      * @ORM\ManyToOne(targetEntity="App\Domain\Helper\Volunteer\Entity\Volunteer", inversedBy="tasks")
      * @ORM\JoinColumn(name="volunteer_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     * @Serializer\Groups({Task::GROUP_DETAILS})
      */
     private $volunteer;
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="App\Domain\Helper\Comment\Entity\Comment", mappedBy="task", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(
+     *     targetEntity="App\Domain\Helper\Comment\Entity\Comment",
+     *     mappedBy="task",
+     *     orphanRemoval=true,
+     *     cascade={"persist"}
+     * )
+     * @Serializer\Groups({Task::GROUP_DETAILS})
      */
     private $comments;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Domain\Helper\Tag\Entity\Tag", mappedBy="tasks", cascade={"persist"})
+     * @ORM\JoinTable(
+     *     name="tag_task",
+     *     joinColumns={ @ORM\JoinColumn(name="task_id", referencedColumnName="id") },
+     *     inverseJoinColumns={ @ORM\JoinColumn(name="tag_id", referencedColumnName="id") }
+     * )
+     * @Serializer\Groups({Task::GROUP_DETAILS})
+     */
+    private $tags;
 
 
     public const GROUP_SIMPLE   = 'GROUP_SIMPLE';
@@ -84,6 +102,7 @@ class Task
         $this->body = $command->body;
         $this->createdAt = $createdAt;
         $this->updatedAt = $createdAt;
+        $this->tags = new ArrayCollection();
     }
 
     public function getVolunteer() : Volunteer
@@ -96,14 +115,36 @@ class Task
         return $this->id;
     }
 
-    public function getTitle(): string {
+    public function getTitle(): string
+    {
         return $this->title;
     }
 
-    public function update(Command $command): self {
+    public function update(Command $command): self
+    {
         $this->title = $command->title;
         $this->body = $command->title;
         $this->updatedAt = new DateTimeImmutable('now');
         return $this;
+    }
+
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag)
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags->add($tag);
+            $tag->addTask($this);
+        }
+    }
+
+    public function removeTag(Tag $tag)
+    {
+        if ($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
+        }
     }
 }

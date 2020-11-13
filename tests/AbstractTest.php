@@ -98,8 +98,11 @@ abstract class AbstractTest extends WebTestCase
         $executor->execute($loader->getFixtures());
     }
 
-    public function assertResponseOk(?Response $response = null, ?string $message = null, string $type = 'text/html') : void
-    {
+    public function assertResponseOk(
+        ?Response $response = null,
+        ?string $message = null,
+        string $type = 'text/html'
+    ) : void {
         $this->failOnResponseStatusCheck($response, 'isOk', $message, $type);
     }
 
@@ -156,7 +159,7 @@ abstract class AbstractTest extends WebTestCase
             } else {
                 $title = $crawler->filter('title')->text();
             }
-        } catch (Throwable $e) {
+        } catch (\Throwable $e) {
             $title = $e->getMessage();
         }
 
@@ -165,13 +168,10 @@ abstract class AbstractTest extends WebTestCase
 
     private function failOnResponseStatusCheck(
         ?Response $response = null,
-        $callback = null,
+        $callback = 'isOk',
         ?string $message = null,
         string $type = 'text/html'
     ) : void {
-        if ($callback === null) {
-            $callback = 'isOk';
-        }
 
         if ($response === null && self::$client) {
             $response = self::$client->getResponse();
@@ -185,7 +185,7 @@ abstract class AbstractTest extends WebTestCase
             }
 
             return;
-        } catch (Throwable $e) {
+        } catch (\Throwable $e) {
             // nothing to do
         }
 
@@ -225,11 +225,19 @@ abstract class AbstractTest extends WebTestCase
         $credentials = ['email' => $email, 'password' => $password,];
 
         $client = static::getClient();
-        $client->request('POST', '/api/auth/login/', [], [], ['CONTENT_TYPE' => 'application/json'], json_encode($credentials));
+        $client->request(
+            'POST',
+            '/api/auth/login/',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode($credentials)
+        );
 
         $data = json_decode($client->getResponse()->getContent(), true);
 
-        if(empty($data)) {
+        if (empty($data)) {
+            var_dump($client->getResponse());
             throw new \Exception('Auth client response empty!');
         }
 

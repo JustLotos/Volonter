@@ -23,7 +23,6 @@ class UpdateTest extends AbstractTest
         $this->makeRequestWithAuth([], '/task/cget/', 'GET');
         /** @var Task $task */
         $task = $this->content[0];
-        $this->makeRequestWithAuth();
 
         $this->makeRequestWithAuth(['title' => 'test'], $this->uri.$task['id'].'/');
 
