@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Domain\User\Reset\ByEmail;
 
-use App\DataFixtures\Helper\UserFixtures;
+use App\DataFixtures\Helper\VolunteerFixtures;
 use App\Tests\AbstractTest;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +17,7 @@ class ConfirmActionTest extends AbstractTest
 
     public function getFixtures() : array
     {
-        return [UserFixtures::class];
+        return [VolunteerFixtures::class];
     }
 
     public function testValid()

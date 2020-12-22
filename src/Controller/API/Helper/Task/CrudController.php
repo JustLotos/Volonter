@@ -44,7 +44,7 @@ class CrudController extends AbstractController
     /** @Route("/get/{id}/", name="getTask", methods={"GET"}) */
     public function getTask(Task $task) : Response
     {
-        $this->denyAccessUnlessGranted(TaskVoter::EDIT, $task, TaskVoter::NOT_FOUND_MESSAGE);
+        //$this->denyAccessUnlessGranted(TaskVoter::EDIT, $task, TaskVoter::NOT_FOUND_MESSAGE);
         return  $this->response($this->serializer->serialize($task, Task::GROUP_SIMPLE));
     }
 
