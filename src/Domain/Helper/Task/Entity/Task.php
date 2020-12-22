@@ -55,14 +55,14 @@ class Task
     /**
      * @var DateTimeImmutable
      * @ORM\Column(type="datetime_immutable")
-     * @Serializer\Groups({Task::GROUP_DETAILS})
+     * @Serializer\Groups({Task::GROUP_SIMPLE})
      */
     private $createdAt;
 
     /**
      * @var DateTimeImmutable
      * @ORM\Column(type="datetime_immutable")
-     * @Serializer\Groups({Task::GROUP_DETAILS})
+     * @Serializer\Groups({Task::GROUP_SIMPLE})
      */
     private $updatedAt;
 
@@ -70,7 +70,7 @@ class Task
      * @var Volunteer
      * @ORM\ManyToOne(targetEntity="App\Domain\Helper\Volunteer\Entity\Volunteer", inversedBy="tasks")
      * @ORM\JoinColumn(name="volunteer_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
-     * @Serializer\Groups({Task::GROUP_DETAILS})
+     * @Serializer\Groups({Task::GROUP_SIMPLE})
      */
     private $volunteer;
 

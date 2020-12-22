@@ -22,6 +22,8 @@ class CgetTest extends AbstractTest
     {
         $this->makeRequestWithAuth();
 
+
+        var_dump($this->content);
         self::assertResponseOk($this->response);
         self::assertArrayHasKey('id', $this->content[0]);
         self::assertArrayHasKey('title', $this->content[0]);

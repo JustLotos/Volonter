@@ -4,11 +4,17 @@ declare(strict_types=1);
 
 namespace App\Domain\Helper\Volunteer\Entity\Types;
 
+use JMS\Serializer\Annotation as Serializer;
 use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;
 
 class Id
 {
+    /**
+     *  @var string
+     *  @Serializer\Type(name="string")
+     *  @Serializer\Groups({App\Domain\Helper\Volunteer\Entity\Volunteer::GROUP_SIMPLE})
+     */
     private $value;
 
     public function __construct(string $value)

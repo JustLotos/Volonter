@@ -20,6 +20,8 @@ class Volunteer
     /**
      * @var Id
      * @ORM\Column(type="helper_volunteer_id")
+     * @Serializer\Groups({Volunteer::GROUP_SIMPLE})
+     * @Serializer\Type(name="App\Domain\Helper\Volunteer\Entity\Types\Id")
      * @ORM\Id
      */
     private $id;
