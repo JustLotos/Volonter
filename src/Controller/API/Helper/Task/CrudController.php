@@ -29,9 +29,7 @@ class CrudController extends AbstractController
     /** @Route("/cget/", name="getAllTasks", methods={"GET"}) */
     public function getAllTasks(Request $request, TaskRepository $repository) : Response
     {
-        /** @var User $user */
-        $user = $this->getUser();
-        $tasks = $repository->getAll(new Id($user->getId()->getValue()));
+        $tasks = $repository->findAll();
 
         $groups = [Task::GROUP_SIMPLE];
 

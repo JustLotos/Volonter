@@ -29,7 +29,7 @@ class CrudController extends AbstractController
     public function getAllCommentsByTask(CommentRepository $repository, string $taskId) : Response
     {
         $comments = $repository->getAllByTask(new Id($taskId));
-        return  $this->response($this->serializer->serialize($comments,  Comment::GROUP_SIMPLE));
+        return  $this->response($this->serializer->serialize($comments, Comment::GROUP_SIMPLE));
     }
 
     /** @Route("/get/{id}/", name="getComment", methods={"GET"}) */
@@ -39,7 +39,8 @@ class CrudController extends AbstractController
     }
 
     /** @Route("/new/", name="createNewComment", methods={"POST"}) */
-    public function create(Request $request, CreateHandler $handler): Response {
+    public function create(Request $request, CreateHandler $handler): Response
+    {
         /** @var CreateCommand $command */
         $command = $this->serializer->deserialize($request, CreateCommand::class);
         $this->validator->validate($command);
@@ -51,7 +52,8 @@ class CrudController extends AbstractController
     }
 
     /** @Route("/update/{id}/", name="updateComment", methods={"PUT"}) */
-    public function update(Request $request, Comment $comment, UpdateHandler $handler): Response {
+    public function update(Request $request, Comment $comment, UpdateHandler $handler): Response
+    {
         $this->denyAccessUnlessGranted(CommentVoter::EDIT, $comment, CommentVoter::NOT_FOUND_MESSAGE);
         /** @var UpdateCommand $command */
         $command = $this->serializer->deserialize($request, UpdateCommand::class);
@@ -61,7 +63,8 @@ class CrudController extends AbstractController
     }
 
     /** @Route("/remove/{id}/", name="deleteComment", methods={"POST"}) */
-    public function remove(Comment $comment, RemoveHandler $handler): Response {
+    public function remove(Comment $comment, RemoveHandler $handler): Response
+    {
         $this->denyAccessUnlessGranted(CommentVoter::EDIT, $comment, CommentVoter::NOT_FOUND_MESSAGE);
         $handler->handle($comment);
         return $this->response($this->getSimpleSuccessResponse());
