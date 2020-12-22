@@ -26,7 +26,7 @@ class Geo
      */
     private $y;
 
-    public function __construct(string $x, string $y)
+    public function __construct(?string $x = '0', ?string $y = '0')
     {
         $this->x = $x;
         $this->y = $y;

@@ -58,7 +58,10 @@ class CrudController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
         $task = $handler->handle($user, $command);
-        return $this->response($this->serializer->serialize($task, [Task::GROUP_DETAILS, Tag::GROUP_SIMPLE]));
+        return $this->response($this->serializer->serialize(
+            $task,
+            [Task::GROUP_SIMPLE, Task::GROUP_DETAILS, Tag::GROUP_SIMPLE]
+        ));
     }
 
     /** @Route("/update/{id}/", name="updateTask", methods={"PUT"}) */
