@@ -2,6 +2,7 @@
 
 namespace App\Domain\Helper\Task\UseCase\Create;
 
+use App\Domain\Helper\Task\Entity\Types\Geo;
 use App\Domain\Helper\Task\Entity\Types\Id;
 use App\Domain\Helper\Tag\TagRepository;
 use App\Domain\Helper\Task\Entity\Task;
@@ -39,6 +40,7 @@ class Handler
     {
         /** @var Volunteer $volunteer */
         $volunteer = $this->volunteerRepository->getById(new VolID($user->getId()));
+        $command->geo = new Geo($command->geo['x'], $command->geo['y']);
         $task = new Task($volunteer, Id::next(), $command, new DateTimeImmutable());
 
         $this->addTags($task, $command, $this->tagRepository);

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\DataFixtures\Helper;
 
+use App\Domain\Helper\Task\Entity\Types\Geo;
 use App\Domain\Helper\Task\UseCase\Create\Command;
 use App\Domain\Helper\Task\Entity\Types\Id as TaskId;
 use App\Domain\Helper\Volunteer\Entity\Volunteer;
@@ -28,6 +29,10 @@ class TaskFixtures extends BaseFixture implements ContainerAwareInterface, Depen
             $command = new Command();
             $command->title = $this->faker->title;
             $command->body = $this->faker->text;
+            $command->geo = new Geo(
+                $this->faker->numberBetween().'',
+                $this->faker->numberBetween().''
+            );
 
             return new Task($volunteer, TaskId::next(), $command, new \DateTimeImmutable());
         });
@@ -38,6 +43,10 @@ class TaskFixtures extends BaseFixture implements ContainerAwareInterface, Depen
             $command = new Command();
             $command->title = $this->faker->title;
             $command->body = $this->faker->text;
+            $command->geo = new Geo(
+                $this->faker->numberBetween().'',
+                $this->faker->numberBetween().''
+            );
 
             return new Task($volunteer, TaskId::next(), $command, new \DateTimeImmutable());
         });

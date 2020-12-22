@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Helper\Task\Entity;
 
 use App\Domain\Helper\Tag\Entity\Tag;
+use App\Domain\Helper\Task\Entity\Types\Geo;
 use App\Domain\Helper\Task\UseCase\Create\Command as CreateCommand;
 use App\Domain\Helper\Task\UseCase\Update\Command;
 use App\Domain\Helper\Task\Entity\Types\Id;
@@ -43,6 +44,13 @@ class Task
      * @Serializer\Groups({Task::GROUP_SIMPLE})
      */
     private $body;
+
+    /**
+     * @var Geo | null
+     * @ORM\Embedded(class="App\Domain\Helper\Task\Entity\Types\Geo", columnPrefix="geo_")
+     * @Serializer\Groups({Task::GROUP_SIMPLE})
+     */
+    private $geo;
 
     /**
      * @var DateTimeImmutable
@@ -102,6 +110,7 @@ class Task
         $this->body = $command->body;
         $this->createdAt = $createdAt;
         $this->updatedAt = $createdAt;
+        $this->geo = $command->geo;
         $this->tags = new ArrayCollection();
     }
 
@@ -118,6 +127,11 @@ class Task
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function getGeo(): Geo
+    {
+        return $this->geo;
     }
 
     public function update(Command $command): self

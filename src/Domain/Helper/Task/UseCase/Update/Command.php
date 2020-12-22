@@ -15,7 +15,6 @@ class Command
      */
     public $title;
 
-
     /**
      * @Assert\Length(max="255")
      * @Assert\NotBlank()
@@ -23,8 +22,9 @@ class Command
      */
     public $body;
 
-    /**
-     * @Serializer\Type(name="array")
-     */
+    /** @Serializer\Type(name="array") */
     public $tags;
+
+    /** @Serializer\Type(name="array") */
+    public $geo;
 }

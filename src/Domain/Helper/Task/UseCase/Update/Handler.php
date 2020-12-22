@@ -4,6 +4,7 @@ namespace App\Domain\Helper\Task\UseCase\Update;
 
 use App\Domain\Helper\Tag\TagRepository;
 use App\Domain\Helper\Task\Entity\Task;
+use App\Domain\Helper\Task\Entity\Types\Geo;
 use App\Domain\Helper\Task\TaskRepository;
 use App\Domain\Helper\Task\TaskTrait;
 use App\Service\FlushService;
@@ -14,9 +15,6 @@ class Handler
 
     private $flushService;
     private $tagRepository;
-    /**
-     * @var TaskRepository
-     */
     private $taskRepository;
 
     public function __construct(
@@ -31,13 +29,11 @@ class Handler
 
     public function handle(Task $task, Command $command): Task
     {
+        $command->geo = new Geo($command->geo['x'], $command->geo['y']);
         $task->update($command);
         $this->removeTags($task, $command);
         $this->addTags($task, $command, $this->tagRepository);
-
         $this->flushService->flush();
-
-        var_dump($this->taskRepository->findOneBy(['id'=>$task->getId()])->getTags());
         return $task;
     }
 }

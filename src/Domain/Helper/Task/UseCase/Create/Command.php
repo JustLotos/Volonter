@@ -26,4 +26,9 @@ class Command
      * @Serializer\Type(name="array")
      */
     public $tags;
+
+    /**
+     * @Serializer\Type(name="array")
+     */
+    public $geo;
 }
