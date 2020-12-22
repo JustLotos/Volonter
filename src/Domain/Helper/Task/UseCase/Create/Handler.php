@@ -42,7 +42,7 @@ class Handler
         $volunteer = $this->volunteerRepository->getById(new VolID($user->getId()));
 
 
-        $command->geo = new Geo($command->geo['x'], $command->geo['y']);
+        $command->geo = new Geo($command->geo['x'] ?: 0, $command->geo['y']?:0);
         $task = new Task($volunteer, Id::next(), $command, new DateTimeImmutable());
 
         $this->addTags($task, $command, $this->tagRepository);

@@ -29,7 +29,7 @@ class Handler
 
     public function handle(Task $task, Command $command): Task
     {
-        $command->geo = new Geo($command->geo['x'], $command->geo['y']);
+        $command->geo = new Geo($command->geo['x'] ?: 0, $command->geo['y'] ?: 0);
         $task->update($command);
         $this->removeTags($task, $command);
         $this->addTags($task, $command, $this->tagRepository);
