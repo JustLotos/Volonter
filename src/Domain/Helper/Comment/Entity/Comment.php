@@ -39,6 +39,7 @@ class Comment
      * @var Volunteer
      * @ORM\ManyToOne(targetEntity="App\Domain\Helper\Volunteer\Entity\Volunteer", inversedBy="tasks")
      * @ORM\JoinColumn(name="volunteer_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     * @Serializer\Groups({Comment::GROUP_SIMPLE})
      */
     private $volunteer;
 

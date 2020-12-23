@@ -40,6 +40,13 @@ class Task
 
     /**
      * @Serializer\Type(name="string")
+     * @ORM\Column(type="string", length=255)
+     * @Serializer\Groups({Task::GROUP_SIMPLE})
+     */
+    private $status;
+
+    /**
+     * @Serializer\Type(name="string")
      * @ORM\Column(type="text", length=255)
      * @Serializer\Groups({Task::GROUP_SIMPLE})
      */
@@ -112,6 +119,7 @@ class Task
         $this->updatedAt = $createdAt;
         $this->geo = $command->geo;
         $this->tags = new ArrayCollection();
+        $this->status = 'NEW';
     }
 
     public function getVolunteer() : Volunteer
@@ -138,6 +146,7 @@ class Task
     {
         $this->title = $command->title;
         $this->body = $command->title;
+        $this->status = $command->status;
         $this->updatedAt = new DateTimeImmutable('now');
         return $this;
     }

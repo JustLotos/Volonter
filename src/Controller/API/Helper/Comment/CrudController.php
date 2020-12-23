@@ -14,6 +14,7 @@ use App\Domain\Helper\Comment\UseCase\Update\Command as UpdateCommand;
 use App\Domain\Helper\Comment\UseCase\Update\Handler as UpdateHandler;
 use App\Domain\Helper\Task\Entity\Types\Id;
 use App\Domain\Helper\Comment\CommentRepository;
+use App\Domain\Helper\Volunteer\Entity\Volunteer;
 use App\Domain\User\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +30,10 @@ class CrudController extends AbstractController
     public function getAllCommentsByTask(CommentRepository $repository, string $taskId) : Response
     {
         $comments = $repository->getAllByTask(new Id($taskId));
-        return  $this->response($this->serializer->serialize($comments, Comment::GROUP_SIMPLE));
+        return  $this->response($this->serializer->serialize(
+            $comments,
+            [Comment::GROUP_SIMPLE, Volunteer::GROUP_SIMPLE]
+        ));
     }
 
     /** @Route("/get/{id}/", name="getComment", methods={"GET"}) */

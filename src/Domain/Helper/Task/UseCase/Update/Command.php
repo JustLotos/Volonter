@@ -16,11 +16,18 @@ class Command
     public $title;
 
     /**
-     * @Assert\Length(max="255")
+     * @Assert\Length(max="10000")
      * @Assert\NotBlank()
      * @Serializer\Type(name="string")
      */
     public $body;
+
+    /**
+     * @Assert\Length(max="255")
+     * @Assert\NotBlank()
+     * @Serializer\Type(name="string")
+     */
+    public $status;
 
     /** @Serializer\Type(name="array") */
     public $tags;

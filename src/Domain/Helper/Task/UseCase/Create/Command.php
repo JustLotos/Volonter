@@ -16,7 +16,7 @@ class Command
     public $title;
 
     /**
-     * @Assert\Length(max="255")
+     * @Assert\Length(max="10000")
      * @Assert\NotBlank()
      * @Serializer\Type(name="string")
      */

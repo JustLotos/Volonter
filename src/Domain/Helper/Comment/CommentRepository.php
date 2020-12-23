@@ -37,11 +37,13 @@ class CommentRepository extends ServiceEntityRepository
         $this->manager->persist($comment);
     }
 
-    public function getAllByTask(TaskId $id) {
+    public function getAllByTask(TaskId $id)
+    {
         return $this->repository->findBy(['task' => $id]);
     }
 
-    public function remove(Comment $comment) {
+    public function remove(Comment $comment)
+    {
         $this->manager->remove($comment);
     }
 }
