@@ -8,6 +8,7 @@ use App\Domain\Helper\Task\Entity\Types\Geo;
 use App\Domain\Helper\Task\UseCase\Create\Command;
 use App\Domain\Helper\Task\Entity\Types\Id as TaskId;
 use App\Domain\Helper\Volunteer\Entity\Volunteer;
+use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -34,7 +35,12 @@ class TaskFixtures extends BaseFixture implements ContainerAwareInterface, Depen
                 $this->faker->numberBetween().''
             );
 
-            return new Task($volunteer, TaskId::next(), $command, new \DateTimeImmutable());
+            return new Task(
+                $volunteer,
+                TaskId::next(),
+                $command,
+                DateTimeImmutable::createFromMutable($this->faker->dateTime)
+            );
         });
 
         $this->createMany(1, self::USERS, function () {
@@ -48,7 +54,12 @@ class TaskFixtures extends BaseFixture implements ContainerAwareInterface, Depen
                 $this->faker->numberBetween().''
             );
 
-            return new Task($volunteer, TaskId::next(), $command, new \DateTimeImmutable());
+            return new Task(
+                $volunteer,
+                TaskId::next(),
+                $command,
+                DateTimeImmutable::createFromMutable($this->faker->dateTime)
+            );
         });
 
 

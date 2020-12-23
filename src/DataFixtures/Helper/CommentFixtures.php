@@ -27,7 +27,13 @@ class CommentFixtures extends BaseFixture implements ContainerAwareInterface, De
             /** @var Task $task */
             $task = $this->getRandomReference(TaskFixtures::ADMINS);
 
-            return new Comment($volunteer, CommentId::next(), $task, $this->faker->text, new \DateTimeImmutable('now'));
+            return new Comment(
+                $volunteer,
+                CommentId::next(),
+                $task,
+                $this->faker->text,
+                \DateTimeImmutable::createFromMutable($this->faker->dateTime)
+            );
         });
 
         $this->createMany(20, self::USER, function () {
@@ -36,7 +42,13 @@ class CommentFixtures extends BaseFixture implements ContainerAwareInterface, De
             /** @var Task $task */
             $task = $this->getRandomReference(TaskFixtures::USERS);
 
-            return new Comment($volunteer, CommentId::next(), $task, $this->faker->text, new \DateTimeImmutable('now'));
+            return new Comment(
+                $volunteer,
+                CommentId::next(),
+                $task,
+                $this->faker->text,
+                \DateTimeImmutable::createFromMutable($this->faker->dateTime)
+            );
         });
 
 
