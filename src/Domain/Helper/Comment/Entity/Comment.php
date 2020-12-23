@@ -94,11 +94,13 @@ class Comment
         return $this->id;
     }
 
-    public function getText(): string {
+    public function getText(): string
+    {
         return $this->text;
     }
 
-    public function update(Command $command): self {
+    public function update(Command $command): self
+    {
         $this->text = $command->text;
         $this->updatedAt = new DateTimeImmutable('now');
         return $this;
