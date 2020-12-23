@@ -13,6 +13,7 @@ trait TaskTrait
     {
         if(empty($command->tags)) { return; }
 
+        if(!is_array($command->tags)) {return;}
         $names = array_column($command->tags, 'name');
 
         if($tags = $tagRepository->findBy(['name' => $names])) {
