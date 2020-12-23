@@ -151,7 +151,7 @@ class Task
         return $this;
     }
 
-    public function getTags(): ArrayCollection
+    public function getTags()
     {
         return $this->tags;
     }
