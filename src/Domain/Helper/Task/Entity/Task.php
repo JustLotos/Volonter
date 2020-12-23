@@ -145,7 +145,7 @@ class Task
     public function update(Command $command): self
     {
         $this->title = $command->title;
-        $this->body = $command->title;
+        $this->body = $command->body;
         $this->status = $command->status;
         $this->updatedAt = new DateTimeImmutable('now');
         return $this;

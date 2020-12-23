@@ -43,8 +43,8 @@ trait TaskTrait
                 }
             }
         } catch (\Exception $exception) {
-            var_dump($exception->getMessage());
-            var_dump($exception->getTrace());
+            //var_dump($exception->getMessage());
+            //var_dump($exception->getTrace());
         }
 
     }
