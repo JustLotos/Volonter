@@ -17,6 +17,9 @@ class CurrentUserController extends AbstractController
     /** @Route("/", name="getCurrentUser", methods={"GET"}) */
     public function getCurrent() : Response
     {
-        return $this->response($this->serializer->serialize($this->getUser(), [User::GROUP_SIMPLE, User::GROUP_DETAIL]));
+        return $this->response($this->serializer->serialize(
+            $this->getUser(),
+            [User::GROUP_SIMPLE, User::GROUP_DETAIL]
+        ));
     }
 }

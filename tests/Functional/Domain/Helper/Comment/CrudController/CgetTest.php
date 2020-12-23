@@ -24,6 +24,9 @@ class CgetTest extends AbstractTest
 
         $this->makeRequestWithAuth([], $this->uri.$task['id'].'/');
 
+
+        var_dump($this->content);
+
         self::assertResponseOk($this->response);
         self::assertArrayHasKey('id', $this->content[0]);
         self::assertArrayHasKey('text', $this->content[0]);

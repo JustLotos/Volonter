@@ -60,7 +60,7 @@ class Comment
     /**
      * @var DateTimeImmutable
      * @ORM\Column(type="datetime_immutable")
-     * @Serializer\Groups({Comment::GROUP_DETAILS})
+     * @Serializer\Groups({Comment::GROUP_SIMPLE})
      */
     private $updatedAt;
 

@@ -39,7 +39,7 @@ class CommentRepository extends ServiceEntityRepository
 
     public function getAllByTask(TaskId $id)
     {
-        return $this->repository->findBy(['task' => $id]);
+        return $this->repository->findBy(['task' => $id, 'updatedAt' => 'ASC']);
     }
 
     public function remove(Comment $comment)
