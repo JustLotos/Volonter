@@ -34,11 +34,13 @@ trait TaskTrait
     {
         try {
             if( $tags = $task->getTags()) {
-                $names = array_column($command->tags, 'name');
-//            var_dump($names);
-                foreach ($tags as $tag) {
-                    if (!in_array($tag->getName(), $names)) {
-                        $task->removeTag($tag);
+                if(is_array($command->tags)) {
+                    $names = array_column($command->tags, 'name');
+    //            var_dump($names);
+                    foreach ($tags as $tag) {
+                        if (!in_array($tag->getName(), $names)) {
+                            $task->removeTag($tag);
+                        }
                     }
                 }
             }
