@@ -33,15 +33,6 @@ services:
       - "PHP_IDE_CONFIG=serverName=flash.back"
     links:
       - postgres
-  node:
-    build: docker/images/node
-    working_dir: /app
-    environment:
-      - YARN_CACHE_FOLDER=/yarn
-    user: ${UID:-1000}:${GID:-1000}
-    volumes:
-      - ./:/app
-      - ${HOME}/.yarn:/yarn
   mailhog:
     image: mailhog/mailhog
     container_name: 'mailhog'
