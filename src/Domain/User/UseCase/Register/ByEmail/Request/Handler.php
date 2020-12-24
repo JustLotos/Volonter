@@ -70,7 +70,7 @@ class Handler
         $this->dispatcher->dispatch($event, UserCreatedEvent::NAME);
         $this->repository->add($user);
         $this->flusher->flush();
-
+        $user->activate();
         $this->sendConfirmMessage($user);
 
         return $user;
@@ -79,19 +79,19 @@ class Handler
 
     public function sendConfirmMessage(User $user): void
     {
-        $url = $this->generator->generate(
-            'registerByEmailConfirm',
-            ['token' => $user->getConfirmToken()->getToken()]
-        );
-        $message = BaseMessage::getDefaultMessage(
-            $user->getEmail(),
-            'Регистрация в приложении Flash',
-            $this->builder
-                ->setParam('url', $url)
-                ->setParam('token', $user->getConfirmToken()->getToken())
-                ->build('mail/user/register/byEmail/request.html.twig')
-        );
-
-        $this->sender->send($message);
+//        $url = $this->generator->generate(
+//            'registerByEmailConfirm',
+//            ['token' => $user->getConfirmToken()->getToken()]
+//        );
+//        $message = BaseMessage::getDefaultMessage(
+//            $user->getEmail(),
+//            'Регистрация в приложении Flash',
+//            $this->builder
+//                ->setParam('url', $url)
+//                ->setParam('token', $user->getConfirmToken()->getToken())
+//                ->build('mail/user/register/byEmail/request.html.twig')
+//        );
+//
+//        $this->sender->send($message);
     }
 }
