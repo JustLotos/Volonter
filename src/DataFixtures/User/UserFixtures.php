@@ -33,7 +33,7 @@ class UserFixtures extends BaseFixture implements ContainerAwareInterface
             return $user;
         });
 
-        $this->createMany(100, self::USERS, function () {
+        $this->createMany(1, self::USERS, function () {
             $user = User::createByEmail(
                 Id::next(),
                 new DateTimeImmutable(),
